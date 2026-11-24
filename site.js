@@ -34,7 +34,7 @@ for (const holder of document.querySelectorAll("[data-icon]")) {
 const navigation = document.querySelector("#navigation");
 const menu = document.querySelector(".menu-toggle");
 const navLinks = [...navigation.querySelectorAll("a")];
-const sections = navLinks.map(link => document.querySelector(link.hash));
+const sections = [...document.querySelectorAll("main > section")];
 document.documentElement.classList.add("js");
 menu.hidden = false;
 
@@ -58,7 +58,10 @@ document.addEventListener("keydown", event => {
   }
 });
 document.addEventListener("click", event => {
-  if (!event.target.closest(".topbar")) setMenu(false);
+  if (!navigation.contains(event.target) && !menu.contains(event.target)) setMenu(false);
+});
+document.querySelector(".topbar").addEventListener("focusout", event => {
+  if (!event.currentTarget.contains(event.relatedTarget)) setMenu(false);
 });
 matchMedia("(min-width: 791px)").addEventListener("change", () => setMenu(false));
 
@@ -87,49 +90,60 @@ window.addEventListener("scroll", queueLocationUpdate, {passive: true});
 window.addEventListener("resize", queueLocationUpdate);
 updateLocation();
 
-// An original schematic of the prototype's sensor arrangement, drawn in track coordinates.
-function drawRailDiagram(canvas) {
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return;
-  const project = (x, y, z = 0) => [470 + x * .93 + y * .8, 225 - x * .32 + y * .46 - z];
-  function path(points, stroke, fill, width = 2) {
-    ctx.beginPath();
-    points.forEach(([x,y], i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));
-    if (fill) { ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); }
-    if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.stroke(); }
-  }
-  function block(x,y,z,w,d,h, colors) {
-    const corner = (dx,dy,dz) => project(x+dx,y+dy,z+dz);
-    path([corner(0,d,h),corner(w,d,h),corner(w,d,0),corner(0,d,0)],colors[3],colors[1]);
-    path([corner(0,0,h),corner(0,d,h),corner(0,d,0),corner(0,0,0)],colors[3],colors[2]);
-    path([corner(0,0,h),corner(w,0,h),corner(w,d,h),corner(0,d,h)],colors[3],colors[0]);
-  }
-  const bg = ctx.createLinearGradient(0,0,960,410);
-  bg.addColorStop(0,"#102d33"); bg.addColorStop(.63,"#173f40"); bg.addColorStop(1,"#123134");
-  ctx.fillStyle=bg; ctx.fillRect(0,0,960,410);
-  for (let x=-800; x<=800; x+=42) path([project(x,-600),project(x,600)],"#285050",null,1);
-  for (let y=-600; y<=600; y+=42) path([project(-800,y),project(800,y)],"#25494a",null,1);
-  for (let x=-650; x<650; x+=28) block(x,-48,0,12,96,3,["#366460","#1f4845","#28534e","#48736c"]);
-  for (const y of [-32,27]) block(-620,y,4,1240,6,5,["#a4cab6","#689282","#42766e","#78a495"]);
-  // The instrument trolley carries the edge computer and forward-facing sensors.
-  block(-89,-34,11,157,68,13,["#608c7f","#41695f","#33574f","#93b7a5"]);
-  block(-72,-28,25,105,52,22,["#87a99c","#436d63","#50776a","#b1cdba"]);
-  block(-48,-18,48,45,33,19,["#c0d4b9","#739587","#8daa96","#c8d6bf"]);
-  block(35,-18,26,24,36,25,["#b2c9ab","#759a81","#668b75","#bad2b2"]);
-  for (let i=0; i<4; i++) path([project(-63+i*9,24,42),project(-60+i*9,24,32)],"#244c4a",null,2);
-  const tip=project(65,0,39);
-  path([tip,project(280,-94,16),project(280,94,16)],"#8adfba55","#87e5ae16",2);
-  for (let i=1;i<=3;i++) {
-    ctx.beginPath(); ctx.ellipse(tip[0]+i*37,tip[1]-i*13,14+i*3,8+i*5,-.32,-1.15,1.1);
-    ctx.lineWidth=2;ctx.strokeStyle="#a2e2be";ctx.stroke();
-  }
-  function label(text,x,y,target) {
-    const [tx,ty]=target;
-    path([[x,y+11],[x+45,y+11],[tx,ty]],"#8ab9aa",null,1.5);
-    ctx.fillStyle="#d1e6d8";ctx.font="19px Consolas, monospace";ctx.fillText(text,x,y);
-    ctx.beginPath();ctx.arc(tx,ty,3,0,Math.PI*2);ctx.fill();
-  }
-  label("Camera + radar",100,72,project(47,-12,55));
-  label("Track sensors",675,283,project(66,26,25));
+
+// Each category remains readable in the HTML when scripting is unavailable.
+const switcher = document.querySelector(".skill-tabs");
+const tabs = [...switcher.querySelectorAll("button")];
+const panels = tabs.map(tab => document.getElementById(tab.dataset.panel));
+
+function selectCategory(index, animate = false) {
+  tabs.forEach((tab, i) => {
+    const active = i === index;
+    tab.setAttribute("aria-selected", String(active));
+    tab.tabIndex = active ? 0 : -1;
+    panels[i].hidden = !active;
+    panels[i].classList.toggle("is-entering", active && animate);
+  });
 }
-drawRailDiagram(document.querySelector("#rail-art"));
+
+function enableTechnologies(panel) {
+  const items = [...panel.querySelectorAll(".tech-list li")];
+  const label = panel.querySelector(".skill-ring strong");
+  const note = panel.querySelector(".tech-note");
+  const buttons = items.map(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = item.textContent;
+    item.replaceChildren(button);
+    return button;
+  });
+  function selectTechnology(index) {
+    buttons.forEach((button, i) => button.setAttribute("aria-pressed", String(i === index)));
+    label.textContent = buttons[index].textContent;
+    note.textContent = items[index].dataset.note;
+  }
+  buttons.forEach((button, index) => button.addEventListener("click", () => selectTechnology(index)));
+  selectTechnology(0);
+  note.hidden = false;
+}
+
+switcher.setAttribute("role", "tablist");
+tabs.forEach((tab, i) => {
+  const panel = panels[i];
+  tab.id = "tab-" + panel.id;
+  tab.setAttribute("role", "tab");
+  tab.setAttribute("aria-controls", panel.id);
+  panel.setAttribute("role", "tabpanel");
+  panel.setAttribute("aria-labelledby", tab.id);
+  enableTechnologies(panel);
+  tab.addEventListener("click", () => selectCategory(i, true));
+  tab.addEventListener("keydown", event => {
+    const next = { ArrowRight: (i + 1) % tabs.length, ArrowLeft: (i + tabs.length - 1) % tabs.length, Home: 0, End: tabs.length - 1 }[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    selectCategory(next, true);
+    tabs[next].focus();
+  });
+});
+selectCategory(0);
+switcher.hidden = false;
