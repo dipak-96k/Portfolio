@@ -23,17 +23,22 @@
   <main id="main">
     <section id="home" class="hero" aria-labelledby="hero-name">
       <div class="wrap hero-copy">
-        <p class="greeting">Hi, I'm</p>
-        <h1 id="hero-name">Dipak Sirsath</h1>
-        <div class="actions">
-          <a href="#projects">Project &amp; Work <span aria-hidden="true">↓</span></a>
-          <a href="assets/dipak-sirsath-resume.pdf" target="_blank" rel="noopener">View Resume <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="hero-gallery">
+        <div class="hero-intro">
+          <div class="hero-text">
+            <p class="greeting">Hi, I'm</p>
+            <h1 id="hero-name">Dipak Sirsath</h1>
+            <p class="hero-role">AI Engineer</p>
+            <p class="hero-summary">I build tools that search documents, transcribe conversations, and help developers trace software failures.</p>
+            <div class="actions">
+              <a href="#projects">Project &amp; Work <span aria-hidden="true">↓</span></a>
+              <a href="assets/dipak-sirsath-resume.pdf" target="_blank" rel="noopener">View Resume <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
           <figure class="portrait-card">
             <img src="assets/dipak-sirsath.webp?v=5f081c2543" alt="Dipak Sirsath standing beneath stone arches" width="600" height="600">
-            <figcaption><i data-icon="pin"></i>Hyderabad, India</figcaption>
           </figure>
+        </div>
+        <div class="hero-gallery">
           <a class="role-card ai-role" href="#skills" data-role-panel="skills-ai">
             <span class="role-logo"><i data-icon="cpu"></i></span><span>AI Engineer</span>
           </a>
@@ -94,7 +99,7 @@
               <li data-note="FinRisk360 uses Scikit-learn and Random Forest for banking risk analysis.">Machine Learning &amp; Deep Learning</li>
               <li data-note="Local language models in Phoenix AI and the OpenAI SDK at Hasman.">Generative AI &amp; LLMs</li>
               <li data-note="Embeddings and vector search retrieve relevant passages from documents.">RAG &amp; Vector Databases</li>
-              <li data-note="Agent workflows connect models to tools and verification steps.">Agentic AI (LangGraph, Agents SDK, MCP)</li>
+              <li data-note="LangGraph, Agents SDK, and MCP connect models to tools and verification steps.">Agentic AI</li>
               <li data-note="FastAPI serves voice and image features in Botsplanet.">FastAPI &amp; REST APIs</li>
               <li data-note="Docker packages services. Prometheus tracks application metrics in Phoenix AI.">LLMOps, Docker &amp; Cloud Deployment</li>
               <li data-note="Text-to-speech, audio transcription, and image generation at Hasman.">Speech &amp; Image Generation</li>
@@ -109,11 +114,12 @@
             <ul class="tech-list">
               <li data-note="Joins, aggregations, and window functions for relational data, including PostgreSQL.">Advanced SQL</li>
               <li data-note="Transforming records with Python and distributed DataFrames.">Python &amp; PySpark</li>
-              <li data-note="Scheduling data ingestion, transformation, and validation.">ETL/ELT &amp; Apache Airflow</li>
-              <li data-note="RetailSense uses Databricks and Delta tables for retail transactions.">Apache Spark &amp; Databricks</li>
-              <li data-note="Organizing analytical tables for reporting and repeatable queries.">Data Warehousing (Snowflake, BigQuery)</li>
-              <li data-note="Streaming events between producers and consumers.">Apache Kafka</li>
-              <li data-note="Cloud storage and compute for data pipelines, including AWS S3.">Cloud Computing (AWS, Azure, GCP)</li>
+              <li data-note="Extract, transform, then load validated records into storage.">ETL</li>
+              <li data-note="Extract, load, then transform data in the warehouse.">ELT</li>
+              <li data-note="Airflow schedules pipelines, Spark processes data, and Kafka streams events.">Apache</li>
+              <li data-note="Organizing warehouse tables for reporting and repeatable queries.">Snowflake</li>
+              <li data-note="RetailSense uses Databricks and Delta tables for retail transactions.">Databricks</li>
+              <li data-note="Cloud storage and compute for data pipelines.">Azure</li>
               <li data-note="Storing and querying document-oriented data.">MongoDB Atlas</li>
               <li data-note="Checking duplicates, missing values, and inconsistent records before analysis.">Data Quality &amp; Validation</li>
             </ul>
@@ -127,7 +133,7 @@
               <li data-note="RetailSense compares shopping behavior across groups of customers.">Advanced SQL</li>
               <li data-note="Cleaning and validating datasets and exploring Zudio retail sales.">Advanced Excel</li>
               <li data-note="IPL InsightX uses DAX measures for team standings and player performance.">Power BI &amp; DAX</li>
-              <li data-note="Preparing tabular data and calculating numerical summaries.">Python (Pandas, NumPy)</li>
+              <li data-note="Pandas and NumPy help prepare tabular data and calculate numerical summaries.">Python</li>
               <li data-note="Testing whether observed differences could be explained by chance.">Statistics &amp; Hypothesis Testing</li>
               <li data-note="Power Query shapes IPL data for season-by-season reporting.">Data Cleaning &amp; Visualization</li>
               <li data-note="Explaining patterns in customer spending and turning measures into dashboard insights.">Business Analytics &amp; Data Storytelling</li>

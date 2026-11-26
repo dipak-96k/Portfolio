@@ -45,10 +45,13 @@ nav a[aria-current], .skill-tabs button[aria-selected="true"] { border-color: #6
 .menu-toggle { display: none; }
 
 .hero-copy { text-align: center; padding-block: clamp(38px,5vw,72px) clamp(44px,5vw,72px); }
+.hero-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 33%); align-items: center; gap: clamp(32px, 6vw, 88px); text-align: left; }
+.hero-role { font-size: clamp(1.35rem, 2vw, 1.65rem); }
+.hero-summary { max-width: 45ch; margin-top: 12px; color: #b5b7bd; font-size: 1.08rem; }
 .greeting { font-size: 1.25rem; color: #c9c3d0; }
 h1, h2, h3, h4 { font: 400 2.25rem/1.15 var(--font); letter-spacing: -.02em; overflow-wrap: break-word; }
 h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing: -.05em; margin: 4px 0 16px; }
-.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 12px; margin-top: 20px; }
 .actions a { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 44px; padding: 8px 20px; border: 1px solid #96999a; border-radius: 0; }
 .actions a:first-child { color: var(--void); background: var(--porcelain); border-color: var(--porcelain); }
 .project-link, .inline-links a, footer a {
@@ -118,11 +121,10 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 .inline-links { display: flex; flex-wrap: wrap; gap: 16px; grid-column: 2; grid-row: 1/3; align-self: center; }
 .repository-link { text-align: right; border-top: 1px solid var(--rule); padding-top: 8px; }
 
-.hero-gallery { display: grid; grid-template-columns: 1.12fr repeat(3, 1fr); gap: clamp(10px, 1.8vw, 20px); margin-top: clamp(28px, 4vw, 52px); }
+.hero-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.8vw, 20px); margin-top: clamp(28px, 4vw, 52px); }
 .portrait-card, .role-card { position: relative; overflow: hidden; border-radius: 16px; min-width: 0; }
-.portrait-card { border: 1px solid #54483b; background: #28221c; }
+.portrait-card { aspect-ratio: 4 / 4.7; width: 100%; border: 1px solid #54483b; background: #28221c; }
 .portrait-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 40%; }
-.portrait-card figcaption { position: absolute; inset: auto 0 0; display: flex; align-items: center; gap: 5px; padding: 28px 12px 10px; background: linear-gradient(transparent, #000c); color: white; font-size: .85rem; }
 .role-card { --accent: #ccadff; --glow: #553b78; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, 2.4vw, 28px); padding: 22px 8px; min-height: clamp(158px, 17vw, 208px); border: 1px solid transparent; background: radial-gradient(ellipse at 50% 0%, #212039, #12101e 85%) padding-box, linear-gradient(154deg, #76d9cf, #52527d 45%, #ae7fdc) border-box; font-size: clamp(1.13rem, 2.2vw, 1.6rem); line-height: 1.1; }
 .engineering-role { --accent: #89ddda; --glow: #295858; }
 .analytics-role { --accent: #a1c3ff; --glow: #334c73; }
@@ -173,6 +175,20 @@ footer.wrap { width: min(1560px, calc(100% - 80px)); border-top: 1px solid var(-
 footer div { display: flex; gap: 20px; }
 footer a { color: var(--porcelain); }
 
+@media (min-width: 960px) {
+  #projects .wrap { width: min(1100px, calc(100% - 64px)); }
+  .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .project-card { --card-inset: 24px; display: flex; flex-direction: column; }
+  .card-cover { display: flex; flex-direction: column; align-items: stretch; }
+  .card-copy { padding: 18px var(--card-inset) 12px; }
+  .card-copy p { max-width: none; margin-top: 10px; }
+  .card-copy h3 span { max-width: none; margin-top: 4px; font-size: 1.15rem; }
+  .card-media, .phoenix-art { order: -1; margin: 16px var(--card-inset) 0; height: clamp(190px, 18vw, 230px); }
+  .phoenix-art { object-fit: contain; width: calc(100% - 2 * var(--card-inset)); }
+  .card-media > *, .card-media img { height: 100%; width: 100%; object-fit: contain; }
+  .card-stack { margin-top: auto; }
+}
+
 @media (hover: hover) {
   .actions a:hover { background: #303234; color: white; border-color: white; }
   nav a:hover, .menu-toggle:hover, .skill-tabs button:hover, .tech-list button:hover { background: #2d2f30; border-color: #5c6264; }
@@ -182,6 +198,20 @@ footer a { color: var(--porcelain); }
 @media (prefers-reduced-motion: no-preference) {
   :root { scroll-behavior: smooth; }
   .portrait-card img { animation: portrait-reveal .45s ease-out both; }
+  .portrait-card::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(transparent 44%, #dbc8a320 49%, #eadcb378 50%, transparent 51%);
+    animation: scan-portrait 1.1s ease-in-out both;
+  }
+  @keyframes scan-portrait {
+    from { transform: translateY(-55%); opacity: 0; }
+    30%, 65% { opacity: .75; }
+    to { transform: translateY(55%); opacity: 0; }
+  }
+  .role-card { animation: role-enter .32s ease-out backwards; }
+  .engineering-role { animation-delay: .07s; }
+  .analytics-role { animation-delay: .14s; }
+  @keyframes role-enter { from { transform: translateY(8px); opacity: .55; } }
   @keyframes portrait-reveal { from { opacity: .65; transform: scale(1.055); } }
   .actions a, .actions a span, .role-logo { transition: transform .16s ease-out; }
   @media (hover: hover) and (pointer: fine) {
@@ -210,7 +240,14 @@ footer a { color: var(--porcelain); }
   .card-copy { padding: 24px var(--card-inset) 0; }
   .phoenix-art { width: min(100%, 420px); margin-inline: auto; }
   .wrap { width: calc(100% - 40px); }
-  .hero-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-intro { grid-template-columns: 1fr; gap: 24px; text-align: center; }
+  .hero-summary { margin-inline: auto; }
+  .actions { justify-content: center; }
+  .portrait-card { width: min(68%, 245px); justify-self: center; }
+  .hero-gallery { gap: 8px; }
+  .role-card { font-size: 1rem; padding-inline: 5px; }
+  .role-logo { width: 44px; border-radius: 12px; }
+  .role-logo .icon { width: 24px; height: 24px; }
   .role-card { min-height: clamp(138px, 37vw, 180px); }
   .more-projects article { grid-template-columns: auto 1fr; gap: 16px; }
   .more-projects article > div { display: block; }
