@@ -123,8 +123,8 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 
 .hero-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.8vw, 20px); margin-top: clamp(28px, 4vw, 52px); }
 .portrait-card, .role-card { position: relative; overflow: hidden; border-radius: 16px; min-width: 0; }
-.portrait-card { aspect-ratio: 1; width: 100%; background: #000; }
-.portrait-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center; }
+.portrait-card { aspect-ratio: 4 / 4.7; width: 100%; border: 1px solid #54483b; background: #28221c; }
+.portrait-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 40%; }
 .role-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, 2.4vw, 28px); padding: 22px 8px; min-height: clamp(158px, 17vw, 208px); border: 1px solid #363636; background: #0c0c0c; font-size: clamp(1.13rem, 2.2vw, 1.6rem); line-height: 1.1; }
 .role-logo { display: grid; place-items: center; color: #eee; width: 62px; aspect-ratio: 1; border-radius: 18px; border: 1px solid #595959; background: #1d1d1d; }
 .role-logo .icon { width: 32px; height: 32px; }
@@ -167,7 +167,6 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 .contact-links { display: flex; gap: 28px; }
 .contact-links a { flex: 1 1 auto; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--rule); padding-block: 16px; }
 footer.wrap { width: min(1560px, calc(100% - 80px)); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 16px; color: var(--meta); }
-footer div { display: flex; gap: 20px; }
 footer a { color: var(--porcelain); }
 
 @media (min-width: 960px) {
