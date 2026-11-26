@@ -89,7 +89,8 @@
     const [dot, ring, ripple] = halo.children;
     let ringX = 0, ringY = 0, size = 1, targetSize = 1;
     let frame = 0, pressed = false, card = null, magnet = null, target = null;
-    let pending = false;
+    let pending = false, touchId = null, releaseTimer = 0;
+    const highContrast = matchMedia("(forced-colors: active)");
     const shift = (x,y) => "translate3d(" + x.toFixed(2) + "px," + y.toFixed(2) + "px,0)";
     function position(el) {
       const box = el.getBoundingClientRect();
@@ -108,13 +109,13 @@
       if (halo.hidden) return;
       if (pending) {
         pending = false;
-        const nextCard = target.closest("[data-motion-card]");
-        const nextMagnet = target.closest(magnets);
+        const nextCard = touchId === null ? target.closest("[data-motion-card]") : null;
+        const nextMagnet = touchId === null ? target.closest(magnets) : null;
         if (card !== nextCard && card) card.removeAttribute("data-pointed");
         if (magnet !== nextMagnet) resetMagnet();
         card = nextCard;
         magnet = nextMagnet;
-        pointer.inHero = hero.contains(target);
+        pointer.inHero = touchId === null && hero.contains(target);
         if (card) {
           const {x,y} = position(card);
           card.style.setProperty("--spot-x", x * 100 + "%");
@@ -136,7 +137,7 @@
           portrait.style.removeProperty("--portrait-x");
           portrait.style.removeProperty("--portrait-y");
         }
-        targetSize = pressed ? .65 : target.closest("a, button, summary, [data-motion-card]") ? 1.55 : 1;
+        targetSize = pressed ? .82 : target.closest("a, button, summary, [data-motion-card]") ? 1.24 : 1;
         dot.style.transform = shift(pointer.x, pointer.y);
       }
       ringX += (pointer.x - ringX) * .24;
@@ -147,6 +148,10 @@
     }
     function schedule() { if (!frame) frame = requestAnimationFrame(draw); }
     function hide() {
+      clearTimeout(releaseTimer);
+      touchId = null;
+      root.classList.remove("using-halo");
+      halo.classList.remove("is-releasing");
       halo.hidden = true;
       pressed = pending = pointer.inHero = false;
       if (card) card.removeAttribute("data-pointed");
@@ -157,32 +162,79 @@
       cancelAnimationFrame(frame);
       frame = 0;
     }
-    function move(event) {
-      if (event.pointerType !== "mouse" || !fine.matches || reduced.matches || document.hidden) { hide(); return; }
-      target = event.target;
-      pointer.x = event.clientX;
-      pointer.y = event.clientY;
-      if (halo.hidden) { ringX = pointer.x; ringY = pointer.y; halo.hidden = false; }
+    function showAt(x, y, element) {
+      if (reduced.matches || highContrast.matches || document.hidden) { hide(); return false; }
+      clearTimeout(releaseTimer);
+      halo.classList.remove("is-releasing");
+      target = element;
+      pointer.x = x;
+      pointer.y = y;
+      if (halo.hidden) {
+        ringX = x; ringY = y; size = 1;
+        dot.style.transform = ring.style.transform = shift(x, y);
+        halo.hidden = false;
+      }
       pending = true;
       schedule();
+      return true;
     }
-    document.addEventListener("pointermove", move, { passive: true });
-    document.addEventListener("pointerdown", event => {
-      move(event);
-      if (halo.hidden) return;
-      pressed = true;
+
+    function moveMouse(event) {
+      if (event.pointerType !== "mouse" || touchId !== null) return false;
+      if (event.target.closest("input, textarea, select, [contenteditable=true]")) { hide(); return false; }
+      if (!showAt(event.clientX, event.clientY, event.target)) return false;
+      root.classList.add("using-halo");
+      return true;
+    }
+
+    function pulse() {
       const at = shift(pointer.x, pointer.y);
       ripple.getAnimations().forEach(animation => animation.cancel());
       ripple.animate([{ transform: at + " scale(.5)", opacity: .65 }, { transform: at + " scale(2)", opacity: 0 }], { duration: 280, easing: "ease-out" });
+    }
+
+    document.addEventListener("pointermove", moveMouse, { passive: true });
+    document.addEventListener("pointerdown", event => {
+      if (moveMouse(event)) { pressed = true; pulse(); }
     }, { passive: true });
-    document.addEventListener("pointerup", event => { pressed = false; move(event); });
-    document.addEventListener("pointerout", event => { if (!event.relatedTarget) hide(); });
-    window.addEventListener("scroll", hide, { passive: true });
+    document.addEventListener("pointerup", event => {
+      if (moveMouse(event)) pressed = false;
+    });
+    document.addEventListener("pointerout", event => {
+      if (event.pointerType === "mouse" && !event.relatedTarget) hide();
+    });
+
+    // Passive touch events keep tracking after the browser takes ownership of a scroll.
+    document.addEventListener("touchstart", event => {
+      if (event.touches.length !== 1) { hide(); return; }
+      const touch = event.touches[0];
+      root.classList.remove("using-halo");
+      touchId = touch.identifier;
+      if (showAt(touch.clientX, touch.clientY, event.target)) { pressed = true; pulse(); }
+    }, { passive: true });
+    document.addEventListener("touchmove", event => {
+      const touch = event.touches[0];
+      if (event.touches.length === 1 && touch.identifier === touchId) {
+        showAt(touch.clientX, touch.clientY, event.target);
+      }
+    }, { passive: true });
+    document.addEventListener("touchend", event => {
+      if (event.touches.length || touchId === null) return;
+      pressed = false;
+      targetSize = 1;
+      // Keep the last touch position through the release frame, then clear it.
+      halo.classList.add("is-releasing");
+      schedule();
+      releaseTimer = setTimeout(hide, 310);
+    }, { passive: true });
+    document.addEventListener("touchcancel", hide, { passive: true });
+    window.addEventListener("scroll", () => { if (touchId === null) hide(); }, { passive: true });
     window.addEventListener("blur", hide);
     document.addEventListener("keydown", hide);
     document.addEventListener("visibilitychange", hide);
     reduced.addEventListener("change", hide);
     fine.addEventListener("change", hide);
+    highContrast.addEventListener("change", hide);
   }
 
   function animateNetwork() {

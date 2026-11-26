@@ -13,9 +13,13 @@
 .tab-indicator { position: absolute; pointer-events: none; left: 0; top: 0; height: 2px; background: #d4d4d4; border-radius: 2px; }
 .magnetic-label { display: inline-flex; align-items: center; justify-content: inherit; gap: inherit; pointer-events: none; }
 .mouse-halo { position: fixed; inset: 0 auto auto 0; width: 0; height: 0; z-index: 20; pointer-events: none; }
+.mouse-halo.is-releasing { opacity: 0; transition: opacity .2s ease-out 90ms; }
+@media (any-hover: hover) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .using-halo, .using-halo :is(a, button, summary) { cursor: none; }
+}
 .mouse-halo > i { position: absolute; border-radius: 50%; pointer-events: none; }
-.mouse-dot { inset: -2px auto auto -2px; width: 4px; height: 4px; background: #ddd; }
-.mouse-ring { left: -13px; top: -13px; width: 26px; height: 26px; border: 1px solid #ddd7; box-shadow: 0 0 12px #ddd2; }
+.mouse-dot { left: -4px; top: -4px; width: 8px; height: 8px; background: var(--porcelain); box-shadow: 0 0 9px #ffffff65; }
+.mouse-ring { left: -16px; top: -16px; width: 32px; height: 32px; border: 1px solid #c4c4c49c; background: radial-gradient(circle, #ffffff0d, transparent 70%); }
 .mouse-ripple { left: -10px; top: -10px; width: 20px; height: 20px; border: 1px solid #ddd9; opacity: 0; }
 [data-motion-card] { position: relative; isolation: isolate; }
 [data-motion-card]::before, [data-motion-card]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; }
