@@ -207,14 +207,11 @@ footer a { color: var(--porcelain); }
   .analytics-role { animation-delay: .14s; }
   @keyframes role-enter { from { transform: translateY(8px); opacity: .55; } }
   @keyframes portrait-reveal { from { opacity: .65; transform: scale(1.055); } }
-  @supports (animation-timeline: view()) {
-    .education { animation: role-enter linear both; animation-timeline: view(); animation-range: entry 0% entry 65%; }
-  }
   .actions a, .actions a span, .role-logo, .education-mark { transition: transform .16s ease-out; }
   @media (hover: hover) and (pointer: fine) {
     .actions a:hover { transform: translateY(-2px); }
-    .actions a:first-child:hover span { transform: translateY(2px); }
-    .actions a:last-child:hover span { transform: translate(2px,-2px); }
+    .actions a:first-child:hover [aria-hidden] { transform: translateY(2px); }
+    .actions a:last-child:hover [aria-hidden] { transform: translate(2px,-2px); }
     .role-card:hover .role-logo, .education:hover .education-mark { transform: translateY(-3px); }
   }
   .actions a:active { transform: scale(.97); }

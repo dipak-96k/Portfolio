@@ -79,6 +79,8 @@ function updateLocation() {
     if (link.hash === "#" + active.id) link.setAttribute("aria-current", "location");
     else link.removeAttribute("aria-current");
   }
+  const range = document.documentElement.scrollHeight - innerHeight;
+  document.querySelector('.topbar').style.setProperty('--read-progress', range > 0 ? Math.min(1, Math.max(0, scrollY / range)) : 0);
   frameRequested = false;
 }
 function queueLocationUpdate() {
@@ -104,6 +106,7 @@ function selectCategory(index, animate = false) {
     panels[i].hidden = !active;
     panels[i].classList.toggle("is-entering", active && animate);
   });
+  switcher.dispatchEvent(new Event('categorychange'));
 }
 
 function enableTechnologies(panel) {
