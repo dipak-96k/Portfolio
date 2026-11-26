@@ -34,33 +34,48 @@
     <section id="projects" class="section" aria-labelledby="projects-title"><div class="wrap">
       <div class="work-head"><h2 id="projects-title">Selected work</h2></div>
       <div class="project-grid">
+        <article class="project-card" id="phoenix-ai">
+          <header class="entry-line"><p class="category">Agentic AI · AIOps · In development</p><span class="folio" aria-label="Project 1 of 7">01 <span>/ 07</span></span></header>
+          <div class="project-intro">
+            <h3>Phoenix AI <span class="project-subtitle">— Autonomous Self-Healing Software System</span></h3>
+            <p>An intelligent Agentic AI-powered platform designed to monitor software applications, detect anomalies, investigate failures, identify root causes, generate code fixes, and orchestrate verified recovery workflows. Built using Python, FastAPI, LangGraph, local LLMs, machine learning, Prometheus, and Docker, Phoenix AI combines autonomous software engineering with intelligent AIOps to improve application reliability and reduce manual debugging efforts.</p>
+          </div>
+          <figure class="project-window recovery-workflow">
+            <figcaption>Planned recovery workflow</figcaption>
+            <ol>
+              <li><strong>Detect</strong><p>Flag anomalies in application metrics and logs.</p></li>
+              <li><strong>Diagnose</strong><p>Trace failures to likely causes in code or recent deployments.</p></li>
+              <li><strong>Repair</strong><p>Propose a targeted patch using a local language model.</p></li>
+              <li><strong>Verify</strong><p>Run regression tests in an isolated environment.</p></li>
+              <li><strong>Recover</strong><p>Get approval for high-impact actions, then confirm service health.</p></li>
+            </ol>
+          </figure>
+          <div class="project-foot"><ul class="tags"><li>Python</li><li>FastAPI</li><li>LangGraph</li><li>Local LLMs</li><li>Isolation Forest</li><li>Prometheus</li><li>Docker</li></ul></div>
+        </article>
         <article class="project-card">
-          <header class="entry-line"><p class="category">Computer vision · IoT</p><span class="folio" aria-label="Project 1 of 6">01 <span>/ 06</span></span></header>
+          <header class="entry-line"><p class="category">Computer vision · IoT</p><span class="folio" aria-label="Project 2 of 7">02 <span>/ 07</span></span></header>
           <div class="project-intro"><h3>SafeRail Vision</h3><p>A railway safety prototype that combines camera, radar, and ultrasonic sensing to flag track hazards. National Top 5 finalist at SAP Code Unnati.</p></div>
           <div class="project-window"><div class="rail-visual"><img alt="Diagram of the SafeRail sensor trolley and its forward sensing field" height="735" loading="lazy" sizes="(max-width: 1000px) 92vw, 940px" src="assets/saferail-schematic.webp" srcset="assets/saferail-schematic-small.webp 760w, assets/saferail-schematic.webp 1440w" width="1440"/></div></div>
           <div class="project-foot"><ul class="tags"><li>Python</li><li>Raspberry Pi</li><li>ESP32</li></ul><a class="project-link" href="https://github.com/dipak-96k/SafeRail"><i data-icon="github"></i>Project code</a></div>
         </article>
         <article class="project-card">
-          <header class="entry-line"><p class="category">Retail analytics · Business intelligence</p><span class="folio" aria-label="Project 2 of 6">02 <span>/ 06</span></span></header>
-          <div class="project-intro"><h3>RetailSense</h3><p>Explored 3,900+ transactions to understand customer spending. SQL queries compare subscribers and other shoppers, and a Power BI dashboard breaks down buying patterns.</p></div>
-          <div class="project-window"><a aria-label="Open full-size RetailSense dashboard" class="report-preview" href="assets/retailsense.webp" rel="noopener" target="_blank"><img alt="RetailSense Power BI dashboard for customer shopping behavior" loading="lazy" src="assets/retailsense.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
-          <div class="project-foot"><ul class="tags"><li>SQL</li><li>Power BI</li><li>Databricks</li></ul><a class="project-link" href="https://github.com/dipak-96k/DA_RetailSense-Customer-Analytics"><i data-icon="github"></i>Analysis &amp; dashboard</a></div>
-        </article>
-        <article class="project-card">
-          <header class="entry-line"><p class="category">Banking analytics · Machine learning</p><span class="folio" aria-label="Project 3 of 6">03 <span>/ 06</span></span></header>
-          <div class="project-intro"><h3>FinRisk360</h3><p>Analyzed 490K+ banking records to study credit risk, churn, and fraud. A Random Forest model supports risk prediction, alongside Power BI reporting.</p></div>
-          <div class="project-window"><a aria-label="Open full-size FinRisk360 dashboard" class="report-preview" href="assets/finrisk360.webp" rel="noopener" target="_blank"><img alt="FinRisk360 dashboard showing default, churn and fraud metrics" loading="lazy" src="assets/finrisk360.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
-          <div class="project-foot"><ul class="tags"><li>Python</li><li>Scikit-learn</li><li>Power BI</li></ul><a class="project-link" href="https://github.com/dipak-96k/FinRisk360-Banking-Risk-Customer-Analytics"><i data-icon="github"></i>Analysis &amp; reports</a></div>
-        </article>
-        <article class="project-card">
-          <header class="entry-line"><p class="category">Sports analytics · Business intelligence</p><span class="folio" aria-label="Project 4 of 6">04 <span>/ 06</span></span></header>
+          <header class="entry-line"><p class="category">Sports analytics · Business intelligence</p><span class="folio" aria-label="Project 3 of 7">03 <span>/ 07</span></span></header>
           <div class="project-intro"><h3>IPL InsightX</h3><p>Modeled IPL data in Power Query and wrote DAX measures to follow team standings, player performance, and Orange Cap and Purple Cap winners by season.</p></div>
           <div class="project-window"><a aria-label="Open full-size IPL InsightX dashboard" class="report-preview" href="assets/ipl-insightx.webp" rel="noopener" target="_blank"><img alt="IPL InsightX dashboard with Orange Cap, Purple Cap, and team standings" loading="lazy" src="assets/ipl-insightx.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
           <div class="project-foot"><ul class="tags"><li>Power BI</li><li>DAX</li><li>Power Query</li></ul><a class="project-link" href="https://github.com/dipak-96k/DA_PowerBI_IPL-InsightX-Cricket-Analytics-Dashboard"><i data-icon="github"></i>Dashboard &amp; data</a></div>
         </article>
+        <article class="project-card">
+          <header class="entry-line"><p class="category">Retail analytics · Business intelligence</p><span class="folio" aria-label="Project 4 of 7">04 <span>/ 07</span></span></header>
+          <div class="project-intro"><h3>RetailSense</h3><p>Explored 3,900+ transactions to understand customer spending. SQL queries compare subscribers and other shoppers, and a Power BI dashboard breaks down buying patterns.</p></div>
+          <div class="project-window"><a aria-label="Open full-size RetailSense dashboard" class="report-preview" href="assets/retailsense.webp" rel="noopener" target="_blank"><img alt="RetailSense Power BI dashboard for customer shopping behavior" loading="lazy" src="assets/retailsense.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
+          <div class="project-foot"><ul class="tags"><li>SQL</li><li>Power BI</li><li>Databricks</li></ul><a class="project-link" href="https://github.com/dipak-96k/DA_RetailSense-Customer-Analytics"><i data-icon="github"></i>Analysis &amp; dashboard</a></div>
+        </article>
       </div>
-      <div class="more-projects"><article><span class="folio" aria-label="Project 5 of 6">05 <span>/ 06</span></span><div><h3>AlertEye</h3><p>Object detection with real-time voice alerts.</p><div class="inline-links"><a href="https://github.com/dipak-96k/AlertEye/blob/main/AlertEye%20Video%201%20.mp4">Watch demo</a><a href="https://github.com/dipak-96k/AlertEye">Code</a></div></div></article>
-        <article><span class="folio" aria-label="Project 6 of 6">06 <span>/ 06</span></span><div><h3>Zudio Data Analysis</h3><p>An Excel workbook exploring retail sales data.</p><div class="inline-links"><a href="https://github.com/dipak-96k/Zudio-Data-Analysis/blob/main/Zudio%20Data%20Analysis.xlsx">View workbook</a><a href="https://github.com/dipak-96k/Zudio-Data-Analysis">Dataset</a></div></div></article></div>
+      <div class="more-projects">
+        <article><span class="folio" aria-label="Project 5 of 7">05 <span>/ 07</span></span><div><h3>FinRisk360</h3><p>Analyzed 490K+ banking records to explore credit risk, churn, and fraud using Random Forest and Power BI.</p><div class="inline-links"><a href="assets/finrisk360.webp" target="_blank" rel="noopener">View dashboard</a><a href="https://github.com/dipak-96k/FinRisk360-Banking-Risk-Customer-Analytics">Analysis &amp; reports</a></div></div></article>
+        <article><span class="folio" aria-label="Project 6 of 7">06 <span>/ 07</span></span><div><h3>AlertEye</h3><p>Object detection with real-time voice alerts.</p><div class="inline-links"><a href="https://github.com/dipak-96k/AlertEye/blob/main/AlertEye%20Video%201%20.mp4">Watch demo</a><a href="https://github.com/dipak-96k/AlertEye">Code</a></div></div></article>
+        <article><span class="folio" aria-label="Project 7 of 7">07 <span>/ 07</span></span><div><h3>Zudio Data Analysis</h3><p>An Excel workbook exploring retail sales data.</p><div class="inline-links"><a href="https://github.com/dipak-96k/Zudio-Data-Analysis/blob/main/Zudio%20Data%20Analysis.xlsx">View workbook</a><a href="https://github.com/dipak-96k/Zudio-Data-Analysis">Dataset</a></div></div></article>
+      </div>
       <p class="repository-link"><a class="project-link" href="https://github.com/dipak-96k?tab=repositories">All repositories</a></p>
     </div></section>
 

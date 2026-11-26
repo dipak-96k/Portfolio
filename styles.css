@@ -105,6 +105,13 @@ h3 { font-size: clamp(1.625rem,2.5vw,2rem); line-height: 1.2; font-weight: 600; 
 .project-intro h3 { flex: 0 1 37%; }
 .project-intro p { flex: 1; max-width: 63ch; color: var(--muted); }
 .project-window { overflow: hidden; border: 1px solid #343637; border-radius: 16px; padding: 1px; background: var(--well); }
+.project-subtitle { display: block; margin-top: 6px; font: 400 1.05rem/1.4 var(--sans); letter-spacing: 0; }
+.recovery-workflow { padding: clamp(18px, 3vw, 32px); }
+.recovery-workflow figcaption { margin-bottom: 20px; font: 300 .8125rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.recovery-workflow ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+.recovery-workflow li { border-top: 1px solid #515759; padding-top: 12px; }
+.recovery-workflow strong { font-size: 1.125rem; font-weight: 600; }
+.recovery-workflow p { margin-top: 6px; font-size: 1rem; color: var(--muted); }
 .rail-visual, .report-preview { display: grid; position: relative; place-items: center; border-radius: 14px; overflow: hidden; background: var(--well); }
 .rail-visual img { width: 100%; height: auto; }
 .report-preview { padding: clamp(12px,2.7vw,38px); }
