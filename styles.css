@@ -27,7 +27,7 @@ em { color: inherit; font-style: normal; }
 .icon { flex: none; width: 1.1em; height: 1.1em; vertical-align: middle; }
 .skip-link { position: fixed; top: 8px; left: 8px; transform: translateY(-160%); z-index: 10; background: var(--porcelain); color: var(--void); padding: 8px 16px; }
 .skip-link:focus { transform: none; }
-nav a, .menu-toggle, .category, .folio, .date, footer, .skill-tabs button, .contact-links a > span {
+nav a, .menu-toggle, .category, .folio, .date, footer, .skill-tabs button {
   font: 300 .8125rem/1.4 var(--font);
   letter-spacing: .08em;
   text-transform: uppercase;
@@ -123,23 +123,19 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 
 .hero-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(10px, 1.8vw, 20px); margin-top: clamp(28px, 4vw, 52px); }
 .portrait-card, .role-card { position: relative; overflow: hidden; border-radius: 16px; min-width: 0; }
-.portrait-card { aspect-ratio: 4 / 4.7; width: 100%; border: 1px solid #54483b; background: #28221c; }
-.portrait-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center 40%; }
-.role-card { --accent: #ccadff; --glow: #553b78; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, 2.4vw, 28px); padding: 22px 8px; min-height: clamp(158px, 17vw, 208px); border: 1px solid transparent; background: radial-gradient(ellipse at 50% 0%, #212039, #12101e 85%) padding-box, linear-gradient(154deg, #76d9cf, #52527d 45%, #ae7fdc) border-box; font-size: clamp(1.13rem, 2.2vw, 1.6rem); line-height: 1.1; }
-.engineering-role { --accent: #89ddda; --glow: #295858; }
-.analytics-role { --accent: #a1c3ff; --glow: #334c73; }
-.role-logo { display: grid; place-items: center; color: var(--accent); width: 62px; aspect-ratio: 1; border-radius: 18px; border: 1px solid var(--accent); background: linear-gradient(145deg, var(--glow), #13121f 72%); box-shadow: inset 0 1px 0 #ffffff26, 0 6px 20px #0005; }
+.portrait-card { aspect-ratio: 1; width: 100%; background: #000; }
+.portrait-card img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; object-position: center; }
+.role-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, 2.4vw, 28px); padding: 22px 8px; min-height: clamp(158px, 17vw, 208px); border: 1px solid #363636; background: #0c0c0c; font-size: clamp(1.13rem, 2.2vw, 1.6rem); line-height: 1.1; }
+.role-logo { display: grid; place-items: center; color: #eee; width: 62px; aspect-ratio: 1; border-radius: 18px; border: 1px solid #595959; background: #1d1d1d; }
 .role-logo .icon { width: 32px; height: 32px; }
-.about-layout { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: clamp(28px,5vw,68px); }
-.education { padding: clamp(20px,3vw,32px); background: linear-gradient(145deg, #211b34, #111019 80%); border: 1px solid #51425f; border-radius: 16px; }
-.education-mark { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; color: #d9c7f5; background: #393049; }
+.about-layout { display: grid; grid-template-columns: minmax(230px, .7fr) minmax(0, 1.5fr); align-items: start; gap: clamp(28px,5vw,68px); }
+.education { padding: clamp(20px,3vw,32px); background: #0c0c0c; border: 1px solid #363636; border-radius: 16px; }
+.education-mark { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; color: #eee; background: #1d1d1d; border: 1px solid #595959; }
 .education-mark .icon { width: 24px; height: 24px; }
 .education h3 { font-size: 1.7rem; margin: 14px 0 12px; }
 .education h4 { font-size: 1.15rem; }
-.education p { margin-top: 8px; color: #c1bacb; }
-.education .major { color: #d1b5ed; margin: 2px 0 12px; }
-.education .grade { margin-top: 20px; padding-top: 14px; border-top: 1px solid #463d51; }
-.grade strong { margin-left: 6px; color: #dec0ff; font-size: 1.4rem; }
+.education p { margin-top: 8px; color: #bbb; }
+.education .major { color: #ddd; margin: 2px 0 12px; }
 .about-quote { margin-top: 8px; color: #c1c2c4; font-style: italic; }
 .about-copy p { color: #c1c2c4; font-size: 1.14rem; line-height: 1.6; }
 .about-copy p + p { margin-top: 16px; }
@@ -166,12 +162,10 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 .recognition-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0 32px; }
 .recognition-grid article { display: flex; gap: 16px; border-top: 1px solid var(--rule); padding-block: 20px 28px; }
 .recognition-grid .icon { color: #b6bcbe; width: 20px; height: 20px; margin-top: 5px; }
+.recognition-grid h3 { font-size: 1.375rem; line-height: 1.25; }
 .recognition-grid p { margin-top: 8px; color: var(--muted); }
 .contact-links { display: flex; gap: 28px; }
-.contact-links a { flex: 1 1 auto; display: flex; align-items: flex-start; gap: 12px; border-top: 1px solid var(--rule); padding-block: 16px; }
-.contact-links a .icon { margin-top: 3px; }
-.contact-links a > span { color: var(--meta); }
-.contact-links strong { display: block; margin-top: 6px; color: var(--porcelain); font: 400 1rem/1.45 var(--font); text-transform: none; letter-spacing: normal; overflow-wrap: anywhere; }
+.contact-links a { flex: 1 1 auto; display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--rule); padding-block: 16px; }
 footer.wrap { width: min(1560px, calc(100% - 80px)); border-top: 1px solid var(--rule); display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 16px; color: var(--meta); }
 footer div { display: flex; gap: 20px; }
 footer a { color: var(--porcelain); }
@@ -194,7 +188,7 @@ footer a { color: var(--porcelain); }
   .actions a:hover { background: #303234; color: white; border-color: white; }
   nav a:hover, .menu-toggle:hover, .skill-tabs button:hover, .tech-list button:hover { background: #2d2f30; border-color: #5c6264; }
    .project-link:hover, .card-links a:hover, footer a:hover { text-decoration-color: white; color: white; }
-  .contact-links a:hover strong { text-decoration: underline; text-underline-offset: .25em; }
+  .contact-links a:hover span { text-decoration: underline; text-underline-offset: .25em; }
 }
 @media (prefers-reduced-motion: no-preference) {
   :root { scroll-behavior: smooth; }
@@ -214,12 +208,15 @@ footer a { color: var(--porcelain); }
   .analytics-role { animation-delay: .14s; }
   @keyframes role-enter { from { transform: translateY(8px); opacity: .55; } }
   @keyframes portrait-reveal { from { opacity: .65; transform: scale(1.055); } }
-  .actions a, .actions a span, .role-logo { transition: transform .16s ease-out; }
+  @supports (animation-timeline: view()) {
+    .education { animation: role-enter linear both; animation-timeline: view(); animation-range: entry 0% entry 65%; }
+  }
+  .actions a, .actions a span, .role-logo, .education-mark { transition: transform .16s ease-out; }
   @media (hover: hover) and (pointer: fine) {
     .actions a:hover { transform: translateY(-2px); }
     .actions a:first-child:hover span { transform: translateY(2px); }
     .actions a:last-child:hover span { transform: translate(2px,-2px); }
-    .role-card:hover .role-logo { transform: translateY(-3px); }
+    .role-card:hover .role-logo, .education:hover .education-mark { transform: translateY(-3px); }
   }
   .actions a:active { transform: scale(.97); }
   .skill-panel.is-entering { animation: appear .16s ease-out; }
