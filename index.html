@@ -10,7 +10,6 @@
   <meta property="og:type" content="website">
   <title>Dipak Sirsath | AI Engineering &amp; Data Analytics</title>
   <link rel="icon" href="assets/favicon.png">
-  <link rel="preload" href="assets/fonts/cormorant-garamond-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <script src="site.js" defer></script>
 </head>
@@ -19,7 +18,7 @@
   <header class="topbar"><div class="wrap nav-wrap">
     <a class="wordmark" href="#home" aria-label="Dipak Sirsath, home"><span class="monogram" aria-hidden="true">D/S</span><span class="brand-name">Dipak Sirsath</span></a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation" hidden><i data-icon="menu"></i>Menu</button>
-    <nav id="navigation" aria-label="Main navigation"><a href="#projects">Work</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a></nav>
+    <nav id="navigation" aria-label="Main navigation"><a href="#about">About</a><a href="#projects">Work &amp; Projects</a><a href="#experience">Experience</a><a href="#skills">Skills</a><a href="#achievements">Recognition</a><a href="#contact">Contact</a></nav>
   </div></header>
   <main id="main">
     <section id="home" class="hero" aria-labelledby="hero-name">
@@ -31,19 +30,29 @@
       </div>
     </section>
 
+    <section id="about" class="section shaded" aria-labelledby="about-title"><div class="wrap">
+      <div class="section-head"><h2 id="about-title">About</h2></div>
+      <div class="about-layout"><div class="profile"><img src="assets/dipak-sirsath.webp?v=5f081c2543" alt="Dipak Sirsath" width="600" height="600" loading="lazy"><article class="education"><h3>Education</h3><h4>Bachelor of Engineering</h4><p>Computer Science and Engineering</p><p>2022 – 2026</p><p>Pune District Education Association’s College of Engineering</p></article></div>
+        <div class="about-copy">
+          <p>I’m a Hyderabad-based engineer working across AI engineering, data engineering, and analytics. My latest project, Phoenix AI, brings those skills together to trace software failures and test fixes before recovery.</p>
+          <p>At Hasman, I build voice and image tools with FastAPI and the OpenAI SDK, and evaluate RAG search so answers draw on the right documents.</p>
+        </div>
+      </div>
+    </div></section>
+
     <section id="projects" class="section" aria-labelledby="projects-title"><div class="wrap">
-      <div class="work-head"><h2 id="projects-title">Selected work</h2></div>
+      <div class="work-head"><h2 id="projects-title">Work &amp; Projects</h2></div>
       <div class="project-grid">
-        <article class="project-card phoenix-card" id="phoenix-ai" aria-labelledby="phoenix-title">
+        <article class="project-card" id="phoenix-ai" aria-labelledby="phoenix-title">
           <header class="entry-line"><p class="category">Agentic AI · AIOps</p><span class="folio" aria-label="Project 1 of 7">01 <span>/ 07</span></span></header>
-          <div class="phoenix-cover">
-            <div class="phoenix-copy">
+          <div class="card-cover">
+            <div class="card-copy">
               <h3 id="phoenix-title">Phoenix AI <span>— Autonomous Self-Healing Software System</span></h3>
               <p>Designed to monitor applications, detect anomalies, trace failures to their root causes, and test proposed code fixes before recovery.</p>
             </div>
             <img class="phoenix-art" src="assets/phoenix-ai.webp" width="1120" height="840" alt="" loading="lazy">
           </div>
-          <ul class="tags phoenix-stack" aria-label="Technology stack"><li>Python</li><li>FastAPI</li><li>LangGraph</li><li>Local LLMs</li><li>Isolation Forest</li><li>Prometheus</li><li>Docker</li></ul>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Python</li><li>FastAPI</li><li>LangGraph</li><li>Local LLMs</li><li>Isolation Forest</li><li>Prometheus</li><li>Docker</li></ul>
           <details class="recovery-workflow">
             <summary>Explore the recovery workflow</summary>
             <ol>
@@ -57,46 +66,76 @@
         </article>
         <article class="project-card">
           <header class="entry-line"><p class="category">Computer vision · IoT</p><span class="folio" aria-label="Project 2 of 7">02 <span>/ 07</span></span></header>
-          <div class="project-intro"><h3>SafeRail Vision</h3><p>A railway safety prototype that combines camera, radar, and ultrasonic sensing to flag track hazards. National Top 5 finalist at SAP Code Unnati.</p></div>
-          <div class="project-window"><div class="rail-visual"><img alt="Diagram of the SafeRail sensor trolley and its forward sensing field" height="735" loading="lazy" sizes="(max-width: 1000px) 92vw, 940px" src="assets/saferail-schematic.webp" srcset="assets/saferail-schematic-small.webp 760w, assets/saferail-schematic.webp 1440w" width="1440"/></div></div>
-          <div class="project-foot"><ul class="tags"><li>Python</li><li>Raspberry Pi</li><li>ESP32</li></ul><a class="project-link" href="https://github.com/dipak-96k/SafeRail"><i data-icon="github"></i>Project code</a></div>
+          <div class="card-cover">
+            <div class="card-copy"><h3>SafeRail Vision</h3><p>A railway safety prototype that combines camera, radar, and ultrasonic sensing to flag track hazards. National Top 5 finalist at SAP Code Unnati.</p></div>
+            <div class="card-media"><div class="rail-visual"><img alt="Diagram of the SafeRail sensor trolley and its forward sensing field" height="735" loading="lazy" sizes="(max-width: 1000px) 90vw, 480px" src="assets/saferail-schematic.webp" srcset="assets/saferail-schematic-small.webp 760w, assets/saferail-schematic.webp 1440w" width="1440"/></div></div>
+          </div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Python</li><li>Raspberry Pi</li><li>ESP32</li></ul>
+          <div class="card-links"><a class="project-link" href="https://github.com/dipak-96k/SafeRail"><i data-icon="github"></i>Project code</a></div>
         </article>
         <article class="project-card">
           <header class="entry-line"><p class="category">Sports analytics · Business intelligence</p><span class="folio" aria-label="Project 3 of 7">03 <span>/ 07</span></span></header>
-          <div class="project-intro"><h3>IPL InsightX</h3><p>Modeled IPL data in Power Query and wrote DAX measures to follow team standings, player performance, and Orange Cap and Purple Cap winners by season.</p></div>
-          <div class="project-window"><a aria-label="Open full-size IPL InsightX dashboard" class="report-preview" href="assets/ipl-insightx.webp" rel="noopener" target="_blank"><img alt="IPL InsightX dashboard with Orange Cap, Purple Cap, and team standings" loading="lazy" src="assets/ipl-insightx.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
-          <div class="project-foot"><ul class="tags"><li>Power BI</li><li>DAX</li><li>Power Query</li></ul><a class="project-link" href="https://github.com/dipak-96k/DA_PowerBI_IPL-InsightX-Cricket-Analytics-Dashboard"><i data-icon="github"></i>Dashboard &amp; data</a></div>
+          <div class="card-cover">
+            <div class="card-copy"><h3>IPL InsightX</h3><p>Modeled IPL data in Power Query and wrote DAX measures to follow team standings, player performance, and Orange Cap and Purple Cap winners by season.</p></div>
+            <div class="card-media"><a aria-label="Open full-size IPL InsightX dashboard" class="report-preview" href="assets/ipl-insightx.webp" rel="noopener" target="_blank"><img alt="IPL InsightX dashboard with Orange Cap, Purple Cap, and team standings" loading="lazy" src="assets/ipl-insightx.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
+          </div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Power BI</li><li>DAX</li><li>Power Query</li></ul>
+          <div class="card-links"><a class="project-link" href="https://github.com/dipak-96k/DA_PowerBI_IPL-InsightX-Cricket-Analytics-Dashboard"><i data-icon="github"></i>Dashboard &amp; data</a></div>
         </article>
         <article class="project-card">
           <header class="entry-line"><p class="category">Retail analytics · Business intelligence</p><span class="folio" aria-label="Project 4 of 7">04 <span>/ 07</span></span></header>
-          <div class="project-intro"><h3>RetailSense</h3><p>Explored 3,900+ transactions to understand customer spending. SQL queries compare subscribers and other shoppers, and a Power BI dashboard breaks down buying patterns.</p></div>
-          <div class="project-window"><a aria-label="Open full-size RetailSense dashboard" class="report-preview" href="assets/retailsense.webp" rel="noopener" target="_blank"><img alt="RetailSense Power BI dashboard for customer shopping behavior" loading="lazy" src="assets/retailsense.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
-          <div class="project-foot"><ul class="tags"><li>SQL</li><li>Power BI</li><li>Databricks</li></ul><a class="project-link" href="https://github.com/dipak-96k/DA_RetailSense-Customer-Analytics"><i data-icon="github"></i>Analysis &amp; dashboard</a></div>
+          <div class="card-cover">
+            <div class="card-copy"><h3>RetailSense</h3><p>Explored 3,900+ transactions to understand customer spending. SQL queries compare subscribers and other shoppers, and a Power BI dashboard breaks down buying patterns.</p></div>
+            <div class="card-media"><a aria-label="Open full-size RetailSense dashboard" class="report-preview" href="assets/retailsense.webp" rel="noopener" target="_blank"><img alt="RetailSense Power BI dashboard for customer shopping behavior" loading="lazy" src="assets/retailsense.webp"/><span class="expand"><i data-icon="expand"></i></span></a></div>
+          </div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>SQL</li><li>Power BI</li><li>Databricks</li></ul>
+          <div class="card-links"><a class="project-link" href="https://github.com/dipak-96k/DA_RetailSense-Customer-Analytics"><i data-icon="github"></i>Analysis &amp; dashboard</a></div>
         </article>
-      </div>
-      <div class="more-projects">
-        <article><span class="folio" aria-label="Project 5 of 7">05 <span>/ 07</span></span><div><h3>FinRisk360</h3><p>Analyzed 490K+ banking records to explore credit risk, churn, and fraud using Random Forest and Power BI.</p><div class="inline-links"><a href="assets/finrisk360.webp" target="_blank" rel="noopener">View dashboard</a><a href="https://github.com/dipak-96k/FinRisk360-Banking-Risk-Customer-Analytics">Analysis &amp; reports</a></div></div></article>
-        <article><span class="folio" aria-label="Project 6 of 7">06 <span>/ 07</span></span><div><h3>AlertEye</h3><p>Object detection with real-time voice alerts.</p><div class="inline-links"><a href="https://github.com/dipak-96k/AlertEye/blob/main/AlertEye%20Video%201%20.mp4">Watch demo</a><a href="https://github.com/dipak-96k/AlertEye">Code</a></div></div></article>
-        <article><span class="folio" aria-label="Project 7 of 7">07 <span>/ 07</span></span><div><h3>Zudio Data Analysis</h3><p>An Excel workbook exploring retail sales data.</p><div class="inline-links"><a href="https://github.com/dipak-96k/Zudio-Data-Analysis/blob/main/Zudio%20Data%20Analysis.xlsx">View workbook</a><a href="https://github.com/dipak-96k/Zudio-Data-Analysis">Dataset</a></div></div></article>
+        <article class="project-card">
+          <header class="entry-line"><p class="category">Banking analytics · Machine learning</p><span class="folio" aria-label="Project 5 of 7">05 <span>/ 07</span></span></header>
+          <div class="card-cover">
+            <div class="card-copy"><h3>FinRisk360</h3><p>Analyzed 490K+ banking records to explore credit risk, churn, and fraud using Random Forest and Power BI.</p></div>
+            <div class="card-media"><a class="report-preview" href="assets/finrisk360.webp" target="_blank" rel="noopener" aria-label="Open full-size FinRisk360 dashboard"><img src="assets/finrisk360.webp" alt="FinRisk360 banking risk dashboard" loading="lazy"></a></div>
+          </div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Python</li><li>Scikit-learn</li><li>Power BI</li></ul>
+          <div class="card-links"><a href="assets/finrisk360.webp" target="_blank" rel="noopener">View dashboard</a><a href="https://github.com/dipak-96k/FinRisk360-Banking-Risk-Customer-Analytics">Analysis &amp; reports</a></div>
+        </article>
+        <article class="project-card">
+          <header class="entry-line"><p class="category">Computer vision · Assistive technology</p><span class="folio" aria-label="Project 6 of 7">06 <span>/ 07</span></span></header>
+          <div class="card-cover">
+            <div class="card-copy"><h3>AlertEye</h3><p>Object detection with real-time voice alerts.</p></div>
+            <div class="card-media"><a class="demo-preview" href="https://github.com/dipak-96k/AlertEye/blob/main/AlertEye%20Video%201%20.mp4" aria-label="Watch the AlertEye demo"><img src="assets/alerteye-demo.webp" alt="AlertEye running on a laptop during the prototype demonstration" width="848" height="478" loading="lazy"></a></div>
+          </div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Python</li><li>YOLOv8</li><li>Voice alerts</li></ul>
+          <div class="card-links"><a href="https://github.com/dipak-96k/AlertEye/blob/main/AlertEye%20Video%201%20.mp4">Watch demo</a><a href="https://github.com/dipak-96k/AlertEye">Code</a></div>
+        </article>
+        <article class="project-card">
+          <header class="entry-line"><p class="category">Retail analytics · Excel</p><span class="folio" aria-label="Project 7 of 7">07 <span>/ 07</span></span></header>
+          <div class="card-cover">
+            <div class="card-copy"><h3>Zudio Data Analysis</h3><p>An Excel workbook exploring retail sales data.</p></div>
+            <div class="card-media"><table class="data-preview"><caption>Sales records by category</caption><thead><tr><th scope="col">Category</th><th scope="col">Records</th></tr></thead><tbody><tr><th scope="row">Kids</th><td>2,673</td></tr><tr><th scope="row">Men</th><td>2,643</td></tr><tr><th scope="row">Women</th><td>2,583</td></tr></tbody></table></div>
+          </div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Excel</li><li>Retail sales</li></ul>
+          <div class="card-links"><a href="https://github.com/dipak-96k/Zudio-Data-Analysis/blob/main/Zudio%20Data%20Analysis.xlsx">View workbook</a><a href="https://github.com/dipak-96k/Zudio-Data-Analysis">Dataset</a></div>
+        </article>
       </div>
       <p class="repository-link"><a class="project-link" href="https://github.com/dipak-96k?tab=repositories">All repositories</a></p>
     </div></section>
 
-    <section id="about" class="section shaded" aria-labelledby="about-title"><div class="wrap">
-      <div class="section-head"><h2 id="about-title">About</h2><p>I’m a Computer Science graduate based in Hyderabad. My work spans AI engineering, data engineering, and data analytics.</p></div>
-      <div class="about-layout"><div class="profile"><img src="assets/dipak-sirsath.webp?v=5f081c2543" alt="Dipak Sirsath" width="600" height="600" loading="lazy"><article class="education"><h3>Education</h3><h4>Bachelor of Engineering</h4><p>Computer Science and Engineering</p><p>2022 – 2026</p><p>Pune District Education Association’s College of Engineering</p></article></div>
-        <div class="about-copy">
-          <h3>From data to <em>working systems.</em></h3>
-          <p>I like starting with a question and following it back to the data. For RetailSense, I loaded retail transactions into a Databricks Delta table, used SQL to compare how subscribers and other shoppers spend, and connected Power BI so people could explore the results.</p>
-          <p>At Hasman Software Solution, I use FastAPI and the OpenAI SDK to build features for Botsplanet. I work on image generation, text-to-speech, and audio transcription, including turning meeting recordings into text people can use in chat.</p>
-          <p>I’m also building document search with retrieval-augmented generation (RAG). I test which passages the system retrieves for a question and use those results to improve the context our AI model draws on when it answers.</p>
-          <p>My SafeRail Vision prototype combines camera, radar, and ultrasonic sensing to flag railway track hazards. It reached the national Top 5 at the SAP Code Unnati Innovation Marathon.</p>
-        </div>
-      </div>
+    <section id="experience" class="section" aria-labelledby="experience-title"><div class="wrap">
+      <div class="section-head"><h2 id="experience-title">Experience</h2><p>From analyzing business data in Pune to building AI tools for Botsplanet.</p></div>
+      <div class="timeline"><article><p class="date">Oct 2026 – Present</p><h3>AI Engineer Intern</h3><p class="company">Hasman Software Solution Pvt. Ltd. · Botsplanet</p>
+        <ul>
+          <li>I work on image generation and text-to-speech for Botsplanet using FastAPI and the OpenAI SDK.</li>
+          <li>I shipped voice dictation used by seven people and added audio uploads and meeting transcription to AI chat.</li>
+          <li>I’m developing RAG search over company documents with tenant-specific access controls. I built a retrieval evaluation harness to check whether the model receives relevant passages.</li>
+          <li>I track token usage and cost for each OpenAI call.</li>
+        </ul></article>
+        <article><p class="date">Jan 2026 – Jul 2026</p><h3>Data Analyst Trainee</h3><p class="company">Cyber Success Technologies · Pune</p><ul><li>Cleaned and validated datasets with Python and Excel, then used SQL to answer business questions.</li><li>Delivered Power BI and Tableau dashboards with KPI cards, filters, and written insights.</li></ul></article></div>
     </div></section>
 
     <section id="skills" class="section" aria-labelledby="skills-title"><div class="wrap">
-      <div class="section-head"><h2 id="skills-title">Toolkit</h2><p>The tools I use for AI engineering, data analysis, and reporting.</p></div>
+      <div class="section-head"><h2 id="skills-title">Skills</h2><p>The tools I use for AI engineering, data analysis, and reporting.</p></div>
       <div class="skill-tabs" aria-label="Skill categories" hidden>
         <button type="button" data-panel="skills-ai">AI engineering</button>
         <button type="button" data-panel="skills-bi">BI &amp; reporting</button>
@@ -135,25 +174,13 @@
       </div>
     </div></section>
 
-    <section id="experience" class="section" aria-labelledby="experience-title"><div class="wrap">
-      <div class="section-head"><h2 id="experience-title">Experience</h2><p>From analyzing business data in Pune to building AI tools for Botsplanet.</p></div>
-      <div class="timeline"><article><p class="date">Oct 2026 – Present</p><h3>AI Engineer Intern</h3><p class="company">Hasman Software Solution Pvt. Ltd. · Botsplanet</p>
-        <ul>
-          <li>I work on image generation and text-to-speech for Botsplanet using FastAPI and the OpenAI SDK.</li>
-          <li>I shipped voice dictation used by seven people and added audio uploads and meeting transcription to AI chat.</li>
-          <li>I’m developing RAG search over company documents with tenant-specific access controls. I built a retrieval evaluation harness to check whether the model receives relevant passages.</li>
-          <li>I track token usage and cost for each OpenAI call.</li>
-        </ul></article>
-        <article><p class="date">Jan 2026 – Jul 2026</p><h3>Data Analyst Trainee</h3><p class="company">Cyber Success Technologies · Pune</p><ul><li>Cleaned and validated datasets with Python and Excel, then used SQL to answer business questions.</li><li>Delivered Power BI and Tableau dashboards with KPI cards, filters, and written insights.</li></ul></article></div>
-    </div></section>
-
     <section id="achievements" class="section shaded" aria-labelledby="achievements-title"><div class="wrap">
       <div class="section-head"><h2 id="achievements-title">Recognition</h2><p>Two professional certifications, a national Top 5 finish, and student leadership.</p></div>
       <div class="recognition-grid"><article><i data-icon="award"></i><div><h3>National Top 5 finalist</h3><p>SAP Code Unnati Innovation Marathon · SafeRail Vision</p></div></article><article><i data-icon="badge"></i><div><h3>SAP Certified Data Analyst</h3><p>SAP Analytics Cloud · March 2026</p></div></article><article><i data-icon="badge"></i><div><h3>Google Data Analytics Professional Certificate</h3><p>Google via Coursera · March 2026</p></div></article><article><i data-icon="people"></i><div><h3>NSS Club President</h3><p>Led community service activities and student engagement events.</p></div></article></div>
     </div></section>
 
     <section id="contact" class="section contact" aria-labelledby="contact-title"><div class="wrap">
-      <div class="section-head"><h2 id="contact-title">Let’s connect.</h2><p>Have an opportunity in AI engineering or data analytics? I’d like to hear about it.</p></div>
+      <div class="section-head"><h2 id="contact-title">Contact</h2><p>Have an opportunity in AI engineering or data analytics? I’d like to hear about it.</p></div>
       <div class="contact-links"><a href="mailto:dipakshirsath431232@gmail.com"><i data-icon="mail"></i><span>Email<strong>dipakshirsath431232@gmail.com</strong></span></a><a href="https://www.linkedin.com/in/dipakshirsath96k"><i data-icon="linkedin"></i><span>LinkedIn<strong>Dipak Sirsath</strong></span></a><a href="https://github.com/dipak-96k"><i data-icon="github"></i><span>GitHub<strong>@dipak-96k</strong></span></a></div>
     </div></section>
   </main>
