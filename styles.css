@@ -105,10 +105,29 @@ h3 { font-size: clamp(1.625rem,2.5vw,2rem); line-height: 1.2; font-weight: 600; 
 .project-intro h3 { flex: 0 1 37%; }
 .project-intro p { flex: 1; max-width: 63ch; color: var(--muted); }
 .project-window { overflow: hidden; border: 1px solid #343637; border-radius: 16px; padding: 1px; background: var(--well); }
-.project-subtitle { display: block; margin-top: 6px; font: 400 1.05rem/1.4 var(--sans); letter-spacing: 0; }
-.recovery-workflow { padding: clamp(18px, 3vw, 32px); }
-.recovery-workflow figcaption { margin-bottom: 20px; font: 300 .8125rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
-.recovery-workflow ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0; }
+.phoenix-card {
+  --card-inset: clamp(20px, 3.2vw, 40px);
+  overflow: hidden;
+  border: 1px solid #403935;
+  border-radius: 16px;
+  background: #0c0c0d;
+  scroll-margin-top: 12px;
+}
+.phoenix-card .entry-line { margin-inline: var(--card-inset); padding-block: 16px; border-color: #302c2a; }
+.phoenix-cover { display: grid; grid-template-columns: 1fr 1.06fr; align-items: center; isolation: isolate; background: #0c0c0d; }
+.phoenix-copy { padding: clamp(24px, 3.2vw, 44px) 0 24px var(--card-inset); }
+.phoenix-copy h3 { font: 400 clamp(3.6rem, 6.6vw, 5.75rem)/.95 var(--serif); letter-spacing: -.045em; }
+.phoenix-copy h3 span { display: block; max-width: 25ch; margin-top: 12px; font: 400 clamp(1.12rem, 2vw, 1.5rem)/1.28 var(--sans); letter-spacing: -.025em; }
+.phoenix-copy p { max-width: 41ch; margin-top: 20px; color: #a4acad; }
+.phoenix-art { display: block; width: 100%; height: auto; mix-blend-mode: lighten; }
+.phoenix-card .phoenix-stack { padding: 12px var(--card-inset) 24px; }
+.recovery-workflow { padding-inline: var(--card-inset); background: #131313; border-top: 1px solid #302c2a; }
+.recovery-workflow summary { cursor: pointer; list-style: none; min-height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: .95rem; }
+.recovery-workflow summary::-webkit-details-marker { display: none; }
+.recovery-workflow summary::after { content: ""; width: 9px; height: 9px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); margin-right: 4px; }
+.recovery-workflow[open] summary::after { transform: rotate(225deg); }
+.recovery-workflow summary:focus-visible { outline-offset: -3px; }
+.recovery-workflow ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr)); gap: 20px; list-style: none; margin: 0; padding: 0 0 24px; }
 .recovery-workflow li { border-top: 1px solid #515759; padding-top: 12px; }
 .recovery-workflow strong { font-size: 1.125rem; font-weight: 600; }
 .recovery-workflow p { margin-top: 6px; font-size: 1rem; color: var(--muted); }
@@ -191,6 +210,9 @@ footer a { color: var(--porcelain); }
   .contact-links { flex-wrap: wrap; }
 }
 @media (max-width: 620px) {
+  .phoenix-cover { grid-template-columns: 1fr; gap: 12px; }
+  .phoenix-copy { padding: 24px var(--card-inset) 0; }
+  .phoenix-art { width: min(100%, 420px); margin-inline: auto; }
   .wrap { width: calc(100% - 40px); }
   .wordmark { gap: 13px; }
   .brand-name { padding-left: 12px; }
