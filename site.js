@@ -63,7 +63,7 @@ document.addEventListener("click", event => {
 document.querySelector(".topbar").addEventListener("focusout", event => {
   if (!event.currentTarget.contains(event.relatedTarget)) setMenu(false);
 });
-matchMedia("(min-width: 791px)").addEventListener("change", () => setMenu(false));
+matchMedia("(min-width: 1041px)").addEventListener("change", () => setMenu(false));
 
 let frameRequested = false;
 function updateLocation() {
@@ -147,3 +147,10 @@ tabs.forEach((tab, i) => {
 });
 selectCategory(0);
 switcher.hidden = false;
+
+for (const card of document.querySelectorAll("[data-role-panel]")) {
+  card.addEventListener("click", () => {
+    const index = tabs.findIndex(tab => tab.dataset.panel === card.dataset.rolePanel);
+    selectCategory(index);
+  });
+}
