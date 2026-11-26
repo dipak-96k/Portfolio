@@ -140,6 +140,7 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 .education .major { color: #d1b5ed; margin: 2px 0 12px; }
 .education .grade { margin-top: 20px; padding-top: 14px; border-top: 1px solid #463d51; }
 .grade strong { margin-left: 6px; color: #dec0ff; font-size: 1.4rem; }
+.about-quote { margin-top: 8px; color: #c1c2c4; font-style: italic; }
 .about-copy p { color: #c1c2c4; font-size: 1.14rem; line-height: 1.6; }
 .about-copy p + p { margin-top: 16px; }
 .skill-tabs { justify-content: center; margin-bottom: 24px; }
