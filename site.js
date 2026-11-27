@@ -106,7 +106,6 @@ function selectCategory(index, animate = false) {
     panels[i].hidden = !active;
     panels[i].classList.toggle("is-entering", active && animate);
   });
-  switcher.dispatchEvent(new Event('categorychange'));
 }
 
 function enableTechnologies(panel) {

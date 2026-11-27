@@ -42,13 +42,13 @@
           </figure>
         </div>
         <div class="hero-gallery">
-          <a class="role-card ai-role" href="#skills" data-role-panel="skills-ai">
+          <a class="role-card ai-role" href="#skills" data-role-panel="skills-ai" aria-description="I build AI tools for document search, speech, and image generation.">
             <span class="role-logo"><i data-icon="cpu"></i></span><span>AI Engineer</span>
           </a>
-          <a class="role-card engineering-role" href="#skills" data-role-panel="skills-engineer">
+          <a class="role-card engineering-role" href="#skills" data-role-panel="skills-engineer" aria-description="I use SQL and Databricks to prepare data for analysis.">
             <span class="role-logo"><i data-icon="database"></i></span><span>Data Engineer</span>
           </a>
-          <a class="role-card analytics-role" href="#skills" data-role-panel="skills-analyst">
+          <a class="role-card analytics-role" href="#skills" data-role-panel="skills-analyst" aria-description="I turn sales and customer data into Power BI dashboards.">
             <span class="role-logo"><i data-icon="chart"></i></span><span>Data Analytics</span>
           </a>
         </div>
@@ -72,7 +72,7 @@
           <p>Savitribai Phule Pune University (SPPU)</p>
         </article>
         <div class="about-copy">
-          <p>I’m Dipak Sirsath, an AI Engineer based in Hyderabad. I’m currently an intern at Hasman Software Solutions, working on Botsplanet, where I build image generation and text-to-speech features with FastAPI and the OpenAI SDK. I shipped a voice dictation feature that seven people now use, and I added audio uploads and meeting transcription to the AI chat.</p>
+          <p>I’m Dipak Sirsath, an AI Engineer based in Hyderabad. I’m currently an intern at Hasman Software Solutions, where I build image generation and text-to-speech features with FastAPI and the OpenAI SDK. I shipped a voice dictation feature that seven people now use, and I added audio uploads and meeting transcription to the AI chat.</p>
           <p>Most of my time goes into RAG search over company documents, with access controls so each tenant only sees its own files. I wrote an evaluation harness to check whether retrieval pulls the right passages, and I track token usage and cost for every OpenAI call.</p>
           <p>Before Hasman, I spent six months in Pune as a Data Analyst Trainee. I cleaned datasets in Python and Excel, answered business questions with SQL, and built dashboards in Power BI and Tableau.</p>
           <p>My latest project is Phoenix AI. It watches an application, traces a failure to its root cause, and tests a fix before bringing the system back up. An earlier project, SafeRail Vision, was a railway hazard detector that made the national top 5 at SAP Code Unnati.</p>
@@ -82,10 +82,10 @@
     </div></section>
 
     <section id="experience" class="section" aria-labelledby="experience-title"><div class="wrap">
-      <div class="section-head"><h2 id="experience-title">Experience</h2><p>From analyzing business data in Pune to building AI tools for Botsplanet.</p></div>
-      <div class="timeline"><article><p class="date">Oct 2026 – Present</p><h3>AI Engineer Intern</h3><p class="company">Hasman Software Solution Pvt. Ltd. · Botsplanet</p>
+      <div class="section-head"><h2 id="experience-title">Experience</h2><p>From analyzing business data in Pune to building AI tools in Hyderabad.</p></div>
+      <div class="timeline"><article><p class="date">Oct 2026 – Present</p><h3>AI Engineer Intern</h3><p class="company">Hasman Software Solution Pvt. Ltd. · Hyderabad</p>
         <ul>
-          <li>I work on image generation and text-to-speech for Botsplanet using FastAPI and the OpenAI SDK.</li>
+          <li>I work on image generation and text-to-speech using FastAPI and the OpenAI SDK.</li>
           <li>I shipped voice dictation used by seven people and added audio uploads and meeting transcription to AI chat.</li>
           <li>I’m developing RAG search over company documents with tenant-specific access controls. I built a retrieval evaluation harness to check whether the model receives relevant passages.</li>
           <li>I track token usage and cost for each OpenAI call.</li>
@@ -103,14 +103,14 @@
       <div class="skill-panels">
         <article class="skill-panel" id="skills-ai">
           <div class="skill-visual" aria-hidden="true"><div class="skill-ring"><span class="ring-mark"><i data-icon="cpu"></i></span><strong>Python</strong></div></div>
-          <div class="skill-details"><h3>AI Engineer</h3><p>Phoenix AI traces failures and tests fixes. At Hasman, I use retrieval and speech tools in Botsplanet.</p>
+          <div class="skill-details"><h3>AI Engineer</h3><p>Phoenix AI traces failures and tests fixes. At Hasman, I build document search and speech tools.</p>
             <ul class="tech-list">
               <li data-note="Building services, handling data, and writing tests.">Python</li>
               <li data-note="FinRisk360 uses Scikit-learn and Random Forest for banking risk analysis.">Machine Learning &amp; Deep Learning</li>
               <li data-note="Local language models in Phoenix AI and the OpenAI SDK at Hasman.">Generative AI &amp; LLMs</li>
               <li data-note="Embeddings and vector search retrieve relevant passages from documents.">RAG &amp; Vector Databases</li>
               <li data-note="LangGraph, Agents SDK, and MCP connect models to tools and verification steps.">Agentic AI</li>
-              <li data-note="FastAPI serves voice and image features in Botsplanet.">FastAPI &amp; REST APIs</li>
+              <li data-note="FastAPI serves voice and image features at Hasman.">FastAPI &amp; REST APIs</li>
               <li data-note="Docker packages services. Prometheus tracks application metrics in Phoenix AI.">LLMOps, Docker &amp; Cloud Deployment</li>
               <li data-note="Text-to-speech, audio transcription, and image generation at Hasman.">Speech &amp; Image Generation</li>
               <li data-note="Retrieval evaluation checks the relevance of passages. My Python testing toolkit includes pytest.">Model Evaluation &amp; Testing</li>
@@ -178,6 +178,14 @@
               <li><strong>Verify</strong><p>Run regression tests in an isolated environment.</p></li>
               <li><strong>Recover</strong><p>Get approval for high-impact actions, then confirm service health.</p></li>
             </ol>
+            <div class="phoenix-demo" hidden>
+              <h4>Interactive recovery simulation</h4>
+              <p class="demo-status" role="status" aria-live="polite">Sample service is healthy.</p>
+              <div class="demo-actions">
+                <button type="button" data-demo-start>Run simulation</button>
+                <button type="button" data-demo-reset disabled>Reset</button>
+              </div>
+            </div>
           </details>
         </article>
         <article class="project-card">
@@ -186,8 +194,8 @@
             <div class="card-copy"><h3>SafeRail Vision</h3><p>A railway safety prototype that combines camera, radar, and ultrasonic sensing to flag track hazards. National Top 5 finalist at SAP Code Unnati.</p></div>
             <div class="card-media"><div class="rail-visual"><img alt="Diagram of the SafeRail sensor trolley and its forward sensing field" height="735" loading="lazy" sizes="(max-width: 1000px) 90vw, 480px" src="assets/saferail-schematic.webp" srcset="assets/saferail-schematic-small.webp 760w, assets/saferail-schematic.webp 1440w" width="1440"/></div></div>
           </div>
-          <ul class="tags card-stack" aria-label="Technology stack"><li>Python</li><li>Raspberry Pi</li><li>ESP32</li></ul>
-          <div class="card-links"><a class="project-link" href="https://github.com/dipak-96k/SafeRail"><i data-icon="github"></i>Project code</a></div>
+          <ul class="tags card-stack" aria-label="Technology stack"><li>Python</li><li>Raspberry Pi</li><li>ESP32</li><li>YOLOv8</li><li>pyttsx3</li></ul>
+          <div class="card-links"><a class="project-link" href="https://github.com/dipak-96k/SafeRail"><i data-icon="github"></i>Project code</a><a href="https://drive.google.com/file/d/15sk0YrCKPqKOuFapkcssRdj4J0u-tgCD/view?usp=sharing">Watch project video</a></div>
         </article>
         <article class="project-card">
           <header class="entry-line"><p class="category">Sports analytics · Business intelligence</p><span class="folio" aria-label="Project 3 of 7">03 <span>/ 07</span></span></header>
@@ -210,7 +218,7 @@
       </div>
       <div class="more-projects">
         <article><span class="folio" aria-label="Project 5 of 7">05 <span>/ 07</span></span><div><h3>FinRisk360</h3><p>Analyzed 490K+ banking records to explore credit risk, churn, and fraud using Random Forest and Power BI.</p><div class="inline-links"><a href="assets/finrisk360.webp" target="_blank" rel="noopener">View dashboard</a><a href="https://github.com/dipak-96k/FinRisk360-Banking-Risk-Customer-Analytics">Analysis &amp; reports</a></div></div></article>
-        <article><span class="folio" aria-label="Project 6 of 7">06 <span>/ 07</span></span><div><h3>AlertEye</h3><p>Object detection with real-time voice alerts.</p><div class="inline-links"><a href="https://github.com/dipak-96k/AlertEye/blob/main/AlertEye%20Video%201%20.mp4">Watch demo</a><a href="https://github.com/dipak-96k/AlertEye">Code</a></div></div></article>
+        <article><span class="folio" aria-label="Project 6 of 7">06 <span>/ 07</span></span><div><h3>AlertEye</h3><p>Object detection with real-time voice alerts.</p><div class="inline-links"><a href="https://drive.google.com/drive/folders/16H4JnLX5zG8dJ-MM1vOE0gm_r0iUp3JK?usp=sharing">Watch demo</a><a href="https://github.com/dipak-96k/AlertEye">Code</a></div></div></article>
         <article><span class="folio" aria-label="Project 7 of 7">07 <span>/ 07</span></span><div><h3>Zudio Data Analysis</h3><p>An Excel workbook exploring retail sales data.</p><div class="inline-links"><a href="https://github.com/dipak-96k/Zudio-Data-Analysis/blob/main/Zudio%20Data%20Analysis.xlsx">View workbook</a><a href="https://github.com/dipak-96k/Zudio-Data-Analysis">Dataset</a></div></div></article>
       </div>
       <p class="repository-link"><a class="project-link" href="https://github.com/dipak-96k?tab=repositories">All repositories</a></p>
@@ -218,7 +226,12 @@
 
     <section id="achievements" class="section shaded" aria-labelledby="achievements-title"><div class="wrap">
       <div class="section-head"><h2 id="achievements-title">Recognition &amp; Certifications</h2><p>Two professional certifications, a national Top 5 finish, and student leadership.</p></div>
-      <div class="recognition-grid"><article><i data-icon="award"></i><div><h3>National Top 5 finalist</h3><p>SAP Code Unnati Innovation Marathon · SafeRail Vision</p></div></article><article><i data-icon="badge"></i><div><h3>SAP Certified Data Analyst</h3><p>SAP Analytics Cloud · March 2026</p></div></article><article><i data-icon="badge"></i><div><h3>Google Data Analytics Professional Certificate</h3><p>Google via Coursera · March 2026</p></div></article><article><i data-icon="people"></i><div><h3>NSS Club President</h3><p>Led community service activities and student engagement events.</p></div></article></div>
+      <div class="recognition-grid">
+        <article><i data-icon="award"></i><div><h3>National Top 5 finalist</h3><p>SAP Code Unnati Innovation Marathon · SafeRail Vision</p></div></article>
+        <article><i data-icon="badge"></i><div><h3>SAP Certified Data Analyst</h3><p>SAP Analytics Cloud · March 2026</p><a class="certificate-link" href="https://www.credly.com/badges/1f38f4a7-827f-4852-8ba2-8aef59526108" aria-label="View Certificate for SAP Certified Data Analyst">View Certificate</a></div></article>
+        <article><i data-icon="badge"></i><div><h3>Google Data Analytics Professional Certificate</h3><p>Google via Coursera · March 2026</p><a class="certificate-link" href="https://www.coursera.org/account/accomplishments/professional-cert/FBQN8LIZE7DU" aria-label="View Certificate for Google Data Analytics Professional Certificate">View Certificate</a></div></article>
+        <article><i data-icon="people"></i><div><h3>NSS Club President</h3><p>Led community service activities and student engagement events.</p></div></article>
+      </div>
     </div></section>
 
     <section id="contact" class="section contact" aria-labelledby="contact-title"><div class="wrap">
