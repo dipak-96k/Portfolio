@@ -3,11 +3,13 @@ Personal portfolio showcasing my expertise in AI Engineering, Data Analytics, Da
 
 ## Motion controls
 
-Hold the right mouse button and drag horizontally to turn the portrait or role cards. Each role has a short description on its back. Drag vertically on a skill panel to turn its visual. Release to reset. Education and experience cards use a smaller right-drag tilt.
+Hold the left mouse button and drag the portrait, a role card, or a skill panel. Horizontal movement turns its visual side to side, vertical movement tips it up or down, and diagonal movement combines both. Release to reset. Each role card has a short description on its back. Education and experience cards use the same gesture with a smaller tilt.
 
 The site runs directly from `index.html`. The motion controllers use browser APIs in `motion.js`, and their visual treatments are in `motion.css`.
 
-Adjust the `settings` object near the top of `motion.js` to change the rotation travel per right-button drag (`turnDegrees`), magnetic travel, particle counts, or simulation stage duration. The CSS properties `--cursor-ring`, `--spot-radius`, `--beam-period`, and `--orbit-period` control the cursor, spotlight, and border and orbit timing.
+Adjust `settings` in `motion.js` for card rotation, label movement, background network density and simulation timing. The CSS properties `--spot-radius`, `--beam-period` and `--orbit-period` control the spotlight and portrait effects.
+
+The reactor cursor uses a 6px cyan dot at the pointer and a 24px white ring that expands to 36px over controls and cards. Edit the custom properties on `.mouse-halo` in `motion.css` for diameters, colors, stroke, glow and both orbit periods. Keep `--reactor-white` at `#FFFFFF` for the primary ring. In `motion.js`, `cursorSettings` controls tracking at 60 Hz, magnetic strength and travel, particle counts, distance and lifetimes. The shared particle pool is capped at 60. Set `data-motion-off="cursor"` on the HTML element to use the native pointer throughout.
 
 To disable individual effects, add a space-separated `data-motion-off` attribute to the opening HTML element and reload. For example, `<html lang="en" data-motion-off="turns beam">` disables hover rotations and traveling borders. Other supported values are `cursor`, `magnet`, `parallax`, `float`, `orbit`, `network`, `spotlight`, `flip`, `timeline`, and `reveal`. The user's reduced-motion preference takes precedence.
 

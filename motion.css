@@ -9,13 +9,65 @@
 .hero-network { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
 .skill-tabs { position: relative; }
 .magnetic-label { display: inline-flex; align-items: center; justify-content: inherit; gap: inherit; pointer-events: none; }
-.mouse-halo { position: fixed; inset: 0 auto auto 0; width: 0; height: 0; z-index: 20; pointer-events: none; }
-.mouse-halo.is-releasing { opacity: 0; transition: opacity .2s ease-out; }
-.mouse-halo.cursor-off { display: none; }
-.mouse-halo > i { position: absolute; border-radius: 50%; pointer-events: none; }
-.mouse-dot { left: -4px; top: -4px; width: 8px; height: 8px; background: var(--porcelain); box-shadow: 0 0 9px #ffffff65; }
-.mouse-ring { left: calc(var(--cursor-ring) / -2); top: calc(var(--cursor-ring) / -2); width: var(--cursor-ring); height: var(--cursor-ring); border: 1px solid #c4c4c49c; background: radial-gradient(circle, #ffffff0d, transparent 70%); }
-.mouse-ripple { left: -10px; top: -10px; width: 20px; height: 20px; border: 1px solid #ddd9; opacity: 0; }
+/* Reactor appearance. Diameters are in CSS pixels; the orbit artwork uses a 50-unit viewBox. */
+.mouse-halo {
+  --reactor-white: #FFFFFF;
+  --reactor-cyan: #22D3EE;
+  --reactor-diameter: 24;
+  --reactor-hover: 36;
+  --reactor-dot: 6px;
+  --reactor-stroke: 1.5px;
+  --outer-period: 4s;
+  --inner-period: 2.8s;
+  --reactor-glow: 4px;
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 0;
+  z-index: 2147483647;
+}
+.mouse-halo, .mouse-halo * { pointer-events: none; }
+.mouse-halo[hidden] { display: none; }
+@media (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .custom-cursor-active,
+  .custom-cursor-active :is(a[href], button, summary, [role="button"], [role="link"], [role="tab"]) { cursor: none; }
+}
+.mouse-dot, .reactor-head, .reactor-size, .reactor-art, .reactor-particle { position: absolute; }
+.mouse-dot {
+  inset: calc(var(--reactor-dot) / -2) auto auto calc(var(--reactor-dot) / -2);
+  width: var(--reactor-dot);
+  height: var(--reactor-dot);
+  border-radius: 50%;
+  background: var(--reactor-cyan);
+  box-shadow: 0 0 var(--reactor-glow) var(--reactor-cyan);
+}
+.reactor-head, .reactor-size { inset: 0 auto auto 0; width: 0; height: 0; }
+.reactor-size { transition: transform 240ms cubic-bezier(.23,1,.32,1); }
+.mouse-halo[data-hover] .reactor-size { transform: scale(calc(var(--reactor-hover) / var(--reactor-diameter))); }
+.reactor-art {
+  --art-size: calc(var(--reactor-diameter) * 50px / 36);
+  width: var(--art-size);
+  height: var(--art-size);
+  inset: calc(var(--art-size) / -2) auto auto calc(var(--art-size) / -2);
+  overflow: visible;
+  fill: none;
+  transition: transform 140ms cubic-bezier(.23,1,.32,1);
+}
+.is-pressed .reactor-art { transform: scale(.85); }
+.mouse-ring { stroke: var(--reactor-white); stroke-width: var(--reactor-stroke); vector-effect: non-scaling-stroke; }
+.reactor-outer, .reactor-inner { transform-origin: 50% 50%; transform-box: view-box; }
+.reactor-outer { stroke: var(--reactor-white); animation: reactor-orbit var(--outer-period) linear infinite; }
+.reactor-inner { stroke: var(--reactor-cyan); opacity: .49; animation: reactor-orbit var(--inner-period) linear infinite reverse; }
+.reactor-node { fill: var(--reactor-white); stroke: none; }
+.reactor-art { filter: drop-shadow(0 0 1px #ffffff48); }
+.mouse-halo[data-hover] .reactor-art { filter: drop-shadow(0 0 var(--reactor-glow) #ffffff40); }
+@keyframes reactor-orbit { to { transform: rotate(1turn); } }
+.reactor-particle { left: -2px; top: -2px; width: 4px; height: 4px; border-radius: 50%; background: var(--reactor-cyan); }
+.reactor-particle:nth-child(even) { background: var(--reactor-white); }
+@media (prefers-reduced-motion: reduce), (forced-colors: active), (any-hover: none) {
+  .mouse-halo { display: none; }
+  .reactor-outer, .reactor-inner { animation: none; }
+}
 [data-motion-card] { position: relative; isolation: isolate; }
 [data-motion-card]::before, [data-motion-card]::after { content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; }
 [data-motion-card]::before { z-index: -1; background: radial-gradient(var(--spot-radius) circle at var(--spot-x) var(--spot-y), #ffffff10, transparent); }
@@ -41,10 +93,8 @@
     .portrait-parallax { transform: perspective(1000px) translate(var(--portrait-x,0px),var(--portrait-y,0px)); transition: transform .25s ease-out; }
     .hero-in-view .portrait-float { animation: portrait-float 7s ease-in-out infinite; }
     .turn-target { perspective: 1100px; }
-    [data-turn-axis="X"] { rotate: x var(--turn-angle, 0deg); }
-    [data-turn-axis="Y"] { rotate: y var(--turn-angle, 0deg); }
-    [data-turn-axis] { transition: rotate .22s ease-out, transform .22s ease-out; }
-    .turning[data-turn-axis], .turning [data-turn-axis] { transition: rotate 50ms linear, transform .22s ease-out; }
+    [data-turn-surface] { transform: rotateY(var(--turn-yaw, 0deg)) rotateX(var(--turn-pitch, 0deg)); transition: transform .22s ease-out; }
+    .turning[data-turn-surface], .turning [data-turn-surface] { transition-duration: 50ms; transition-timing-function: linear; }
     .portrait-card.turning .portrait-float { animation-play-state: paused; }
     .portrait-card.turning .portrait-parallax { transform: none; }
     @keyframes portrait-float { 50% { transform: translateY(-4px); } }
@@ -63,7 +113,7 @@
   .hero-network, .mouse-halo { display: none; }
 }
 
-:root { --cursor-ring: 32px; --spot-radius: 235px; --beam-period: 2.6s; --orbit-period: 24s; }
+:root { --spot-radius: 235px; --beam-period: 2.6s; --orbit-period: 24s; }
 @property --beam-angle { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
 .portrait-card:has(.portrait-float) { overflow: visible; background: transparent; border-color: transparent; }
 .portrait-float, .portrait-parallax, .portrait-surface { position: absolute; inset: 0; border-radius: inherit; }
@@ -117,8 +167,31 @@
     }
   }
   @keyframes border-orbit { to { --beam-angle: 360deg; } }
-  .contact-links a:is(:hover,:focus-visible) .icon { rotate: -7deg; }
-  .contact-links .icon { transition: rotate .18s ease-out; }
+  .contact-heading h2 { --enter-delay: 70ms; }
+  .contact-heading p:last-child { --enter-delay: 140ms; }
+  .contact-intro { --enter-delay: 180ms; }
+  .contact-card:nth-child(2) { --enter-delay: 110ms; }
+  .contact-card:nth-child(3) { --enter-delay: 220ms; }
+  .contact-card:nth-child(4) { --enter-delay: 330ms; }
+  .availability { --enter-delay: 440ms; }
+  .availability.entered-view::before { animation: availability-pulse 2.4s ease-in-out 3; }
+  @keyframes availability-pulse { 50% { opacity: .55; transform: scale(.82); } }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.contact-card, .recognition-grid article:has(.certificate-link)) {
+    transition: transform 350ms ease-out, border-color 300ms, box-shadow 300ms;
+  }
+  html:not([data-motion-off~="tilt"]) :is(.contact-card, .recognition-grid article:has(.certificate-link))[data-pointed] {
+    transform: perspective(1000px) translateY(var(--lift, -8px)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+    transition-duration: 300ms;
+    border-color: var(--muted);
+    box-shadow: 0 6px 14px #ffffff12, 0 0 0 1px #ffffff18;
+  }
+  .contact-card { --lift: -3px; }
+  .contact-icon, .contact-arrow, .recognition-grid article > .icon { transition: transform 300ms ease-out, filter 300ms; }
+  .recognition-grid article:has(.certificate-link)[data-pointed] > .icon { transform: rotate(10deg) scale(1.1); filter: drop-shadow(0 0 4px #ffffff42); }
+  .contact-card[data-pointed] .contact-icon { transform: scale(1.06); filter: drop-shadow(0 0 3px #ffffff30); }
+  .contact-card[data-pointed] .contact-arrow { transform: translate(2px,-2px); }
 }
 html[data-motion-off~="float"] :is(.portrait-float,.ring-mark) { animation: none; }
 html[data-motion-off~="parallax"] .portrait-parallax { transform: none; }

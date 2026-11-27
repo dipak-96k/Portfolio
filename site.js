@@ -4,6 +4,7 @@
 const outlines = {
   menu: '<path d="M3 6h18M3 12h18M3 18h18"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/>',
+  copy: '<rect x="8" y="8" width="12" height="13" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>',
   grid: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
   file: '<path d="M5 3h9l5 5v13H5zM14 3v6h5M8 13h8M8 17h6"/>',
   github: '<path d="M9 20c-4.5 1.3-4.5-2.1-6.4-2.5M15.4 22v-3.6c0-1 .1-1.5-.5-2.2 3.3-.4 6.2-1.6 6.2-7 0-1.6-.5-2.8-1.5-3.9.2-.9.2-2.3-.2-3.4-1.4-.2-3.3.9-4.1 1.5a14.3 14.3 0 0 0-6.6 0c-.8-.6-2.7-1.7-4.1-1.5-.4 1.1-.4 2.5-.2 3.4a5.5 5.5 0 0 0-1.5 3.9c0 5.4 2.9 6.6 6.2 7-.6.7-.5 1.2-.5 2.2V22"/>',
@@ -32,6 +33,23 @@ for (const holder of document.querySelectorAll("[data-icon]")) {
 }
 
 const navigation = document.querySelector("#navigation");
+const copyEmail = document.querySelector(".copy-email");
+if (copyEmail && navigator.clipboard?.writeText) {
+  const status = document.querySelector(".copy-status");
+  const address = copyEmail.previousElementSibling.href.slice("mailto:".length);
+  let clearStatus;
+  copyEmail.hidden = false;
+  copyEmail.addEventListener("click", async () => {
+    clearTimeout(clearStatus);
+    try {
+      await navigator.clipboard.writeText(address);
+      status.textContent = "Email copied";
+    } catch {
+      status.textContent = "Select the email address to copy it.";
+    }
+    clearStatus = setTimeout(() => { status.textContent = ""; }, 4000);
+  });
+}
 const menu = document.querySelector(".menu-toggle");
 const navLinks = [...navigation.querySelectorAll("a")];
 const sections = [...document.querySelectorAll("main > section")];
