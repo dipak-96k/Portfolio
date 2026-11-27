@@ -128,7 +128,10 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 .role-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(16px, 2.4vw, 28px); padding: 22px 8px; min-height: clamp(158px, 17vw, 208px); border: 1px solid #363636; background: #0c0c0c; font-size: clamp(1.13rem, 2.2vw, 1.6rem); line-height: 1.1; }
 .role-logo { display: grid; place-items: center; color: #eee; width: 62px; aspect-ratio: 1; border-radius: 18px; border: 1px solid #595959; background: #1d1d1d; }
 .role-logo .icon { width: 32px; height: 32px; }
-.about-layout { display: grid; grid-template-columns: minmax(230px, .7fr) minmax(0, 1.5fr); align-items: start; gap: clamp(28px,5vw,68px); }
+.about-layout { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: start; gap: clamp(28px,5vw,68px); }
+@media (max-width: 50rem) {
+  .about-layout { grid-template-columns: minmax(0, 1fr); }
+}
 .education { padding: clamp(20px,3vw,32px); background: #0c0c0c; border: 1px solid #363636; border-radius: 16px; }
 .education-mark { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; color: #eee; background: #1d1d1d; border: 1px solid #595959; }
 .education-mark .icon { width: 24px; height: 24px; }
@@ -136,6 +139,9 @@ h1 { font-size: clamp(2.8rem, 6.8vw, 5.25rem); line-height: 1.05; letter-spacing
 .education h4 { font-size: 1.15rem; }
 .education p { margin-top: 8px; color: #bbb; }
 .education .major { color: #ddd; margin: 2px 0 12px; }
+@media (max-width: 24rem) {
+  .education { margin-inline: -8px; padding-inline: 12px; }
+}
 .about-quote { margin-top: 8px; color: #c1c2c4; font-style: italic; }
 .about-copy p { color: #c1c2c4; font-size: 1.14rem; line-height: 1.6; }
 .about-copy p + p { margin-top: 16px; }
