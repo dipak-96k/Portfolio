@@ -171,11 +171,15 @@
       host.classList.add("turn-target");
       face.setAttribute("data-turn-surface", "");
       on(host, "pointerdown", event => {
+        if (origin || !event.isPrimary || event.button !== 0 || reduced.matches) return;
+        const touch = event.pointerType === "touch";
+        if (!touch && (event.pointerType !== "mouse" || !fine.matches)) return;
         dragged = false;
-        if (event.pointerType !== "mouse" || event.button !== 0 || !fine.matches || reduced.matches) return;
+        const control = event.target.closest("button, a[href], input, select, textarea, video, summary");
+        if (touch && control && control !== host && !control.matches(".skill-flip-control")) return;
         const bounds = host.getBoundingClientRect();
         origin = {
-          id: event.pointerId,
+          id: event.pointerId, touch,
           x: event.clientX, y: event.clientY,
           width: Math.max(1, bounds.width), height: Math.max(1, bounds.height)
         };
@@ -186,7 +190,9 @@
         const dx = event.clientX - origin.x;
         const dy = origin.y - event.clientY;
         if (!dragged) {
-          if (Math.hypot(dx, dy) < 5) return;
+          if (Math.hypot(dx, dy) < (origin.touch ? 9 : 5)) return;
+          // A vertical start belongs to page scrolling. After a sideways start, track both axes.
+          if (origin.touch && Math.abs(dx) <= Math.abs(dy)) { stop(); return; }
           dragged = true;
           host.setPointerCapture(event.pointerId);
         }
@@ -208,8 +214,10 @@
         }
       }, { capture: true });
       on(window, "pointerup", event => { if (event.pointerId === origin?.id) stop(); });
-      on(host, "lostpointercapture", stop);
-      on(host, "pointercancel", stop);
+      on(host, "lostpointercapture", event => {
+        if (event.target === host && event.pointerId === origin?.id) stop();
+      });
+      on(host, "pointercancel", event => { if (event.pointerId === origin?.id) stop(); });
       stops.push(stop);
     }
     bind(portrait, surface);
@@ -229,6 +237,9 @@
     });
     document.querySelectorAll(".skill-panel").forEach(panel => bind(panel, panel.querySelector(".skill-visual")));
     document.querySelectorAll(".education, .timeline article").forEach(card => bind(card, card, 12));
+    on(document, "pointerdown", event => {
+      if (event.pointerType === "touch" && !event.isPrimary) cancelTurns();
+    }, { capture: true, passive: true });
     on(window,"blur",cancelTurns);
     on(reduced,"change",cancelTurns);
     on(fine,"change",cancelTurns);
@@ -266,6 +277,30 @@
       on(panel.querySelector(".tech-list"),"click",() => display(false));
       on(button,"keydown",event => { if(event.key === "Escape") display(false); });
     });
+  }
+
+  function enableTouchFeedback() {
+    let card = null, activeId = null;
+    function clear() {
+      card?.removeAttribute("data-touch-pressed");
+      card = activeId = null;
+    }
+    on(document, "pointerdown", event => {
+      clear();
+      if (event.pointerType !== "touch" || !event.isPrimary || reduced.matches) return;
+      card = event.target.closest(".contact-card, .recognition-grid article:has(.certificate-link)");
+      if (card) {
+        activeId = event.pointerId;
+        card.setAttribute("data-touch-pressed", "");
+      }
+    }, { passive: true });
+    for (const name of ["pointerup", "pointercancel"]) {
+      on(window, name, event => { if (event.pointerId === activeId) clear(); }, { passive: true });
+    }
+    on(window, "blur", clear);
+    on(document, "visibilitychange", clear);
+    on(reduced, "change", clear);
+    cleanups.push(clear);
   }
 
   // Distances are CSS pixels and durations are milliseconds. Visual settings live on .mouse-halo.
@@ -653,6 +688,7 @@
   prepareElements();
   prepareRotations();
   prepareSkillFlips();
+  enableTouchFeedback();
   observeSkills();
   if (!disabled.has("reveal")) observeEntrances();
   observeWorkflow();

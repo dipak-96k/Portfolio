@@ -84,6 +84,22 @@
   .recovery-workflow.is-playing li strong::after { content: ""; display: inline-block; vertical-align: middle; margin-left: .4em; width: 5px; height: 5px; border-radius: 50%; background: #eee; animation: stage-light .85s ease-out var(--stage-delay) both; }
   @keyframes recovery-flow { 0% { transform: scaleX(0); opacity: 0; } 60% { opacity: .9; } 100% { transform: scaleX(1); opacity: 0; } }
   @keyframes stage-light { 0%,100% { opacity: 0; } 40% { opacity: 1; box-shadow: 0 0 8px #bbb; } }
+  .hero-in-view .portrait-float { animation: portrait-float 7s ease-in-out infinite; }
+  .turn-target { perspective: 1100px; }
+  [data-turn-surface] { transform: rotateY(var(--turn-yaw, 0deg)) rotateX(var(--turn-pitch, 0deg)); transition: transform .22s ease-out; }
+  .turning[data-turn-surface], .turning [data-turn-surface] { transition-duration: 0s; }
+  .portrait-card.turning .portrait-float { animation-play-state: paused; }
+  .portrait-card.turning .portrait-parallax { transform: none; }
+  @keyframes portrait-float { 50% { transform: translateY(-4px); } }
+  @media (any-pointer: coarse) {
+    .turn-target { touch-action: pan-y pinch-zoom; }
+    .contact-card, .recognition-grid article:has(.certificate-link) { transition: transform .18s ease-out, box-shadow .18s ease-out; }
+    html:not([data-motion-off~="tilt"]) [data-touch-pressed] {
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 1px #ffffff45, 0 4px 12px #ffffff18;
+    }
+    :is(.actions a, .certificate-link, .card-links a, .tech-list button):active { color: white; box-shadow: 0 0 9px #ffffff38; }
+  }
   @media (hover: hover) and (pointer: fine) {
     [data-motion-card] { transition: transform .35s cubic-bezier(.2,.85,.3,1.12), box-shadow .2s; }
     [data-motion-card]::before, [data-motion-card]::after { transition: opacity .2s; }
@@ -91,13 +107,6 @@
     [data-pointed]::before, [data-pointed]::after { opacity: 1; }
     .magnetic-label { transform: translate(var(--mag-x,0),var(--mag-y,0)); transition: transform .16s ease-out; }
     .portrait-parallax { transform: perspective(1000px) translate(var(--portrait-x,0px),var(--portrait-y,0px)); transition: transform .25s ease-out; }
-    .hero-in-view .portrait-float { animation: portrait-float 7s ease-in-out infinite; }
-    .turn-target { perspective: 1100px; }
-    [data-turn-surface] { transform: rotateY(var(--turn-yaw, 0deg)) rotateX(var(--turn-pitch, 0deg)); transition: transform .22s ease-out; }
-    .turning[data-turn-surface], .turning [data-turn-surface] { transition-duration: 50ms; transition-timing-function: linear; }
-    .portrait-card.turning .portrait-float { animation-play-state: paused; }
-    .portrait-card.turning .portrait-parallax { transform: none; }
-    @keyframes portrait-float { 50% { transform: translateY(-4px); } }
     .project-card img, .card-stack li, .tech-list button { transition: transform .22s ease-out, box-shadow .2s; }
     .project-card:hover .card-media img, .project-card:hover .phoenix-art { transform: scale(1.018); }
     .card-stack li:hover, .tech-list button:hover { transform: translateY(-2px); box-shadow: 0 0 10px #ddd2; }

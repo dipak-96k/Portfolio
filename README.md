@@ -5,6 +5,8 @@ Personal portfolio showcasing my expertise in AI Engineering, Data Analytics, Da
 
 Hold the left mouse button and drag the portrait, a role card, or a skill panel. Horizontal movement turns its visual side to side, vertical movement tips it up or down, and diagonal movement combines both. Release to reset. Each role card has a short description on its back. Education and experience cards use the same gesture with a smaller tilt.
 
+On a touchscreen, start a one-finger swipe sideways on the same cards, then move diagonally to turn both axes. Lift your finger to reset. A vertical swipe scrolls the page, and tapping a role opens its skills. Reduced-motion mode disables rotations and decorative press effects.
+
 The site runs directly from `index.html`. The motion controllers use browser APIs in `motion.js`, and their visual treatments are in `motion.css`.
 
 Adjust `settings` in `motion.js` for card rotation, label movement, background network density and simulation timing. The CSS properties `--spot-radius`, `--beam-period` and `--orbit-period` control the spotlight and portrait effects.
